@@ -13,13 +13,13 @@ taxonomies:
 menu:
     main:
         - name: Misc
-          url: data/
+          url: Misc/
           weight: 3
         - name: Projects
-          url: books/
+          url: Projects/
           weight: 1
         - name: Aerodynamics
-          url: courses/
+          url: Aerodynamics/
           weight: 2
 
         

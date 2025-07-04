@@ -12,15 +12,15 @@ taxonomies:
 
 menu:
     main:
-        - name: Data
+        - name: Misc
           url: data/
           weight: 1 
-        - name: Books
+        - name: Projects
           url: books/
-          weight: 2
-        - name: Courses
+          weight: 1
+        - name: Aerodynamics
           url: courses/
-          weight: 3
+          weight: 2
 
         
 
@@ -56,12 +56,12 @@ params:
           imageWidth: 400
           imageHeight: 400
           buttons:
-            - name: Data #Misc
-              url: data/ #Misc
-            - name: Books # Project
-              url: books/ # Project
-            - name: Courses # Aerodynamics
+            - name: Projects # Books
+              url: books/ # Books
+            - name: Aerodynamics # Course
               url: courses/ # Aerodynamics
+            - name: Misc #data
+              url: data/ #Misc
 
     socialIcons:
         - name: CV

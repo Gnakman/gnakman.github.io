@@ -1,5 +1,5 @@
 baseURL: "https://gnakman.github.io/" 
-title: Moritz-Maria von Igelfeld
+title: Nam Kyun Kang
 theme: PaperMod
 
 enableInlineShortcodes: true
@@ -35,7 +35,7 @@ params:
     DateFormat: "January 2006"
     defaultTheme: dark
     hideFooter: false
-    disableThemeToggle: true
+    disableThemeToggle: false
     ShowShareButtons: false
     ShowReadingTime: false
     disableSpecial1stPost: true

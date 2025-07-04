@@ -56,44 +56,23 @@ params:
           imageWidth: 400
           imageHeight: 400
           buttons:
-            #- name: Papers 
-            #  url: papers/
             - name: Data #Misc
               url: data/ #Misc
             - name: Books # Project
               url: books/ # Project
             - name: Courses # Aerodynamics
               url: courses/ # Aerodynamics
-            #- name: Tags
-            #  url: tags/
-            #- name: Archive
-            #  url: archive/
-            #- name: Blog
-            #  url: https://en.wikipedia.org/wiki/Moritz-Maria_von_Igelfeld_(character)
 
     socialIcons:
         - name: CV
           url: https://www.linkedin.com/in/nam-kang-5450b4254/
         - name: Email
           url: nkkang@gmail.com
-        #- name: Zoom
-        #  url: https://www.zoom.us/my/igelfeld
-        #- name: Location
-        #  url: location/
-        #- name: Office Hours
-        #  url: officehours/
         - name: Google Scholar
           url: https://scholar.google.com/citations?user=DIjPHxgAAAAJ&hl=en
         - name: GitHub
           url: https://github.com/Gnakman
-        #- name: Substack
-        #  url: https://pmichaillat.substack.com
-        #- name: YouTube
-        #  url: https://www.youtube.com/@pmichaillat
-        #- name: Twitter
-        #  url: https://x.com/pmichaillat
-        #- name: Bluesky
-        #  url: https://bsky.app/profile/pmichaillat.bsky.social
+
 
     assets:
         disableScrollBarStyle: true

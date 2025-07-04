@@ -55,7 +55,7 @@ params:
     profileMode:
           enabled: true
           title: Nam Kyun Kang
-          subtitle: "I am an aerodynamicist with a passion in ground vehicle aerodynamics and motorsports. I hope to use this site to chronicle my career and archive some of the achievements I made along the way"
+          subtitle: "I am an aerodynamicist with a passion in ground vehicle aerodynamics and motorsports. I hope to use this site to chronicle my career and documents some of the things that I have learn along the way."
           imageUrl: "Profile.jpg"
           imageWidth: 400
           imageHeight: 400

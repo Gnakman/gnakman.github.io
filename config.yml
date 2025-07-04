@@ -56,7 +56,7 @@ params:
           enabled: true
           title: Nam Kang
           subtitle: "Aerodynamicist passionate about automotive aerodynamics and motorsports. I made this site to archive some of the knowledge gained over the span of my career and highlight my career along with some of my personal acheivements. I wish this website can present my journey as an aerodynamicist chronologically and present it in a pleasing manner"
-          imageUrl: "picture.jpeg"
+          imageUrl: "Profile.jpg"
           imageWidth: 160
           imageHeight: 160
           buttons:

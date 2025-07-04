@@ -14,7 +14,7 @@ menu:
     main:
         - name: Misc
           url: data/
-          weight: 1 
+          weight: 3
         - name: Projects
           url: books/
           weight: 1

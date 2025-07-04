@@ -57,8 +57,8 @@ params:
           title: Nam Kang
           subtitle: "Aerodynamicist passionate about automotive aerodynamics and motorsports. I made this site to archive some of the knowledge gained over the span of my career and highlight my career along with some of my personal acheivements. I wish this website can present my journey as an aerodynamicist chronologically and present it in a pleasing manner"
           imageUrl: "Profile.jpg"
-          imageWidth: 160
-          imageHeight: 160
+          imageWidth: 350  
+          imageHeight: 350
           buttons:
             - name: Aerodynamics
               url: aerodynamics/
@@ -66,10 +66,10 @@ params:
               url: projects/
             - name: Papers 
               url: papers/
-            - name: Data
-              url: data/
-            - name: Tags
-              url: tags/
+            - name: Misc
+              url: Misc/
+            #- name: Tags
+            #  url: tags/
             #- name: Archive
             #  url: archive/
             #- name: Blog
@@ -77,27 +77,27 @@ params:
 
     socialIcons:
         - name: CV
-          url: cv.pdf
+          url: https://www.linkedin.com/in/nam-kang-5450b4254/
         - name: Email
           url: mailto:nkkang@gmail.com
-        - name: Zoom
-          url: https://www.zoom.us/my/igelfeld
-        - name: Location
-          url: location/
-        - name: Office Hours
-          url: officehours/
+        #- name: Zoom
+        #  url: https://www.zoom.us/my/igelfeld
+        #- name: Location
+        #  url: location/
+        #- name: Office Hours
+        #  url: officehours/
         - name: Google Scholar
-          url: https://scholar.google.com/citations?user=cL23w-4AAAAJ
+          url: https://scholar.google.com/citations?user=DIjPHxgAAAAJ&hl=en
         - name: GitHub
-          url: https://github.com/pmichaillat
-        - name: Substack
-          url: https://pmichaillat.substack.com
-        - name: YouTube
-          url: https://www.youtube.com/@pmichaillat
-        - name: Twitter
-          url: https://x.com/pmichaillat
-        - name: Bluesky
-          url: https://bsky.app/profile/pmichaillat.bsky.social
+          url: https://github.com/gnakman
+        #- name: Substack
+        #  url: https://pmichaillat.substack.com
+        #- name: YouTube
+        #  url: https://www.youtube.com/@pmichaillat
+        #- name: Twitter
+        #  url: https://x.com/pmichaillat
+        #- name: Bluesky
+        #  url: https://bsky.app/profile/pmichaillat.bsky.social
 
     assets:
         disableScrollBarStyle: true
@@ -105,7 +105,7 @@ params:
         hiddenInList: false
         hiddenInSingle: true
     label:
-      text: "Moritz-Maria von Igelfeld"
+      text: "Nam Kyun Kang"
       icon: favicon.ico
       iconHeight: 18
 

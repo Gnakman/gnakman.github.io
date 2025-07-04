@@ -1,19 +1,17 @@
 ---
 title: "Location"
-date: 2024-05-08
+date: 2025-07-02
 hidemeta: true
-description: "Professor Dr von Igelfeld's mailing and office addresses at the Institute of Romance Philology."
+description: "Home base for Nam"
 
 ---
 
 ---
 
-#### Mailing address
+#### Area
 
-Professor Dr von Igelfeld  
-Institute of Romance Philology  
-University of Regensburg  
-Regensburg, Germany
+Detroit Metro
+Michigan, USA
 
 ---
 

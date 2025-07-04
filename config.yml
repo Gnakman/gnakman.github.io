@@ -29,7 +29,7 @@ menu:
           weight: 6
 
 params:
-    description: "This website hosts Moritz-Maria von Igelfeld's research papers, books, course materials, data, curriculum vitae, and contact information."
+    description: "Is this thing on?"
     author: Nam Kyun Kang
     # googleAnalyticsID: "G-XXXXX"
     DateFormat: "January 2006"
@@ -60,14 +60,14 @@ params:
           imageWidth: 400
           imageHeight: 400
           buttons:
-            #- name: Papers
-            #  url: papers/
-            #- name: Data
-            #  url: data/
+            - name: Papers
+              url: papers/
+            - name: Data
+              url: data/
             #- name: Books
             #  url: books/
-            #- name: Courses
-            #  url: courses/
+            - name: Courses
+              url: courses/
             #- name: Tags
             #  url: tags/
             #- name: Archive

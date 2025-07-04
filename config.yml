@@ -1,5 +1,5 @@
 baseURL: "https://gnakman.github.io/" 
-title: Moritz-Maria von Igelfeld
+title: Nam Kyun Kang
 theme: PaperMod
 
 enableInlineShortcodes: true
@@ -30,7 +30,7 @@ menu:
 
 params:
     description: "This website hosts Moritz-Maria von Igelfeld's research papers, books, course materials, data, curriculum vitae, and contact information."
-    author: Moritz-Maria von Igelfeld
+    author: Nam Kyun Kang
     # googleAnalyticsID: "G-XXXXX"
     DateFormat: "January 2006"
     defaultTheme: light

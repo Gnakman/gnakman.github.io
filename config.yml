@@ -77,9 +77,9 @@ params:
 
     socialIcons:
         - name: CV
-          url: cv.pdf
+          url: https://www.linkedin.com/in/nam-kang-5450b4254/
         - name: Email
-          url: mailto:igelfeld@regensburg.edu
+          url: nkkang@gmail.com
         #- name: Zoom
         #  url: https://www.zoom.us/my/igelfeld
         #- name: Location
@@ -87,7 +87,7 @@ params:
         #- name: Office Hours
         #  url: officehours/
         - name: Google Scholar
-          url: https://scholar.google.com/citations?user=cL23w-4AAAAJ
+          url: https://scholar.google.com/citations?user=DIjPHxgAAAAJ&hl=en
         - name: GitHub
           url: https://github.com/Gnakman
         #- name: Substack

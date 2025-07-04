@@ -12,15 +12,15 @@ taxonomies:
 
 menu:
     main:
-        - name: Papers
-          url: papers/
-          weight: 1
+        - name: Books
+          url: books/
+          weight: 2
         - name: Courses
           url: courses/
           weight: 3
         - name: Data
           url: data/
-          weight: 2 
+          weight: 1 
         
 
 params:

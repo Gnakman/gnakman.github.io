@@ -1,31 +1,20 @@
 ---
-title: "Lectures at the Villa of Reduced Circumstances"
-date: 2003-03-10
+title: "Fundamentals of Aerodynamics"
+date: 2025-07-05
 aliases: 
-    - /courses/course2/slides4.pdf
-    - /courses/course2/slides1.pdf
-    - /courses/course2/slides3.pdf
-    - /courses/course2/slides2.pdf
-    - /courses/course2/notes3.pdf
-    - /courses/course2/notes4.pdf
-    - /courses/course2/ps3.pdf
-    - /courses/course2/ps4.pdf
-    - /courses/course1/quiz1.pdf
-    - /courses/course1/quiz2.pdf
-    - /courses/course2/quiz3.pdf
-    - /courses/course2/quiz4.pdf
-    - /courses/course1/ps1.pdf
-tags: ["Romance languages","philology","irregular verbs","Spanish","Portuguese"]
-author: "Moritz-Maria von Igelfeld"
+   # - /courses/course2/slides4.pdf
+
+#tags: ["Romance languages","philology","irregular verbs","Spanish","Portuguese"]
+author: "Nam Kyun Kang"
 description: "This graduate course presents classical results in Romance philology." 
-summary: "This graduate course presents classical results in Romance philology. it focuses especially on Portugese and Spanish irregular verbs." 
+summary: "A brief overview of the basics of aerodynamics; boundary layers, wakes and forces source:https://doi.org/10.1146/annurev.fluid.33.1.129" 
 cover:
-    image: "course1.png"
-    alt: "Villa of Reduced Circumstances"
+    image: "course.png"
+    alt: "Aerodunamics"
     relative: true
 editPost:
-    URL: "https://github.com/pmichaillat/hugo-website"
-    Text: "Course portal"
+    URL: "https://github.com/Gnakman/gnakman.github.io/tree/main/content/aerodynamics"
+    Text: "Portal"
 showToc: true
 disableAnchoredHeadings: false
 

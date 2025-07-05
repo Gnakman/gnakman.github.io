@@ -48,6 +48,7 @@ params:
     UseHugoToc: true
     comments: false
     math: true
+
     profileMode:
           enabled: true
           title: Nam Kyun Kang
@@ -62,6 +63,7 @@ params:
               url: aerodynamics/ # Aerodynamics
             - name: Misc #data
               url: misc/ #Misc
+            
 
     socialIcons:
         - name: CV

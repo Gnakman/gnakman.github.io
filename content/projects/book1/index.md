@@ -1,10 +1,9 @@
 ---
-title: "Portugese Irregular Verbs" 
+title: "Project Rally" 
 date: 1997-01-01
-tags: ["Portugese","irregular verbs","philology"]
-author: ["Moritz-Maria von Igelfeld"]
-description: "This book discusses Portugese irregular verbs in great details."
-summary: "This book discusses Portugese irregular verbs in great details."
+author: ["Nam Kyun Kang"]
+description: "Virtual design of a Rally car"
+summary: "Converting DrivAer estate into a rally1 car"
 cover:
     image: "book1.png"
     alt: "Portugese Irregular Verbs"

@@ -8,9 +8,7 @@ cover:
     image: "5216-GENESISMAGMARACINGDEBUTSFULL-SCALEGMR-001HYPERCARUSHERINGINANEWERAOFATHLETICELEGANCE.jpg"
     alt: "Portugese Irregular Verbs"
     relative: true
-editPost:
-    URL: "https://github.com/pmichaillat/hugo-website"
-    Text: "Regensburg University Press"
+
 showToc: false
 disableAnchoredHeadings: false
 

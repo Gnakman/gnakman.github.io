@@ -1,5 +1,5 @@
 ---
-title: "GR1" 
+title: "Genesis Magma, GR1" 
 date: 2025-01-01
 author: ["Nam Kyun Kang"]
 description: "Genesis Magma"
@@ -9,61 +9,46 @@ cover:
     alt: "Portugese Irregular Verbs"
     relative: true
 
-showToc: false
+showToc: true
 disableAnchoredHeadings: false
 
 ---
 
 ---
+![](GR1.jpg)
+## Background
 
-#### Background
-I was involved with the early development of Genesis Hypercar GR1. Working with the Genesis design studio in Irvine I was able to guide the designers to consider the aerodynamic balance and the efficiency of the vehicle. I cannot document every detail of the work, but I will write a few points about these hypercars using publically available images.
+I was involved with the early development of Genesis Hypercar GR1. We used to call it GR1, but I guess the code name has changed to GMR01(Genesis Magma Racing?). Working with the Genesis design studio in Irvine I was able to guide the designers to consider FIA regulation, the aerodynamic balance and the efficiency of the vehicle. Although much of this work remains proprietary, I can discuss several key aspects where I had direct influence. I should make a disclaimer that I am not a professional LMH aero enginner and much of the work I did was based purely on online research.
 
+
+## Aerodynamic Efficiency and Balance
+Aerodynamic efficiency refers to the ratio between lift and drag, $L/D$ and it is a one of key metric to evaluate the performance of the vehicle. The value will change depending on the setup and the value will reflect on the nature of the circuit. 
+
+The typical value of $L/D$ ranges from 2-4 for LMP1 vehicles.
++ At Le Mans, there is a lot of long stretches with striaght lines  which means that $L/D$ will be closer to 4 
+
++ At Bahrain, the course is a mixture of long straights and low speed corner so $L/D$ will be closer to 2 or 3 
+
+I had no idea where this vehicle will be running, so I decided the target to be $L/D=3$.
 
 
 ---
 
-#### Praise
-
-> There is nothing more to be said on this subject. Nothing – Anonymous reviewer
-
+## Aero Items
+---
+### Dive Planes & Splitter
+---
+### Diffuser
+---
+### Rear Wing
+---
+### Shark Fin
 ---
 
-#### View
-
-+ [Chapter 1: History of the Portuguese language](chapter1.pdf)
-+ [Chapter 2: Review of regular verbs](chapter2.pdf)
-+ [Chapter 3: Analysis of irregular verbs](chapter3.pdf)
-
----
-
-#### Excerpt from Chapter 1: Basic mathematical results from Portuguese philology
 
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit $x\in \mathbb{N}$. Proin ac libero nec eros accumsan sagittis: $x^\ast = \max f(x)$. Fusce gravida $4 \ln(x+y) =4 \int \ln(x^2)dx$, lectus nec aliquet malesuada, augue dui lacinia velit, eget ullamcorper lorem lorem id turpis. Nam interdum est id venenatis fermentum: . Nullam fermentum, arcu eu luctus fermentum, felis orci pretium mi, eu bibendum ligula neque in metus. 
 
-$$1+\lambda\exp{\frac{\beta}{\alpha^2}} = \max_{t\in\mathbb{R}}(x(t)-y(t)+z(t)^2).$$
 
-Nulla facilisi. Phasellus pharetra ligula sit amet diam viverra, sed scelerisque ligula cursus. Curabitur sit amet libero eu velit fringilla vulputate, $2\ln(x)$. Suspendisse potenti. Quisque imperdiet arcu ac nibh gravida, id posuere ligula efficitur. Curabitur posuere, dui at finibus viverra, felis justo pulvinar urna, id finibus sem purus eget orci.
-
-Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris vel neque at lorem fermentum tincidunt: $<x,y> = 2x^2 + \mathcal{A}$. Etiam volutpat, risus at aliquet varius, sapien quam vulputate lectus, id ultrices lorem arcu ut magna. Sed malesuada scelerisque dignissim. Aliquam erat volutpat. Proin efficitur tincidunt nulla, a convallis magna cursus sit amet. Donec eget convallis libero. Pellentesque tincidunt nunc et nisi lacinia, quis auctor lorem suscipit: 
-
-$$2\exp(\gamma) = 2\exp(\zeta/3) = 2\exp(\kappa).$$
-
-Praesent at eros a sapien sagittis scelerisque at a nulla. Aliquam erat volutpat. In hac habitasse platea dictumst. Phasellus congue vestibulum nisl, vitae accumsan est. Suspendisse potenti. In ut nunc ac quam congue cursus. Duis fermentum hendrerit eros, ut auctor velit pharetra ut. Nulla facilisi. Cras at convallis purus, a convallis mauris. Donec id est vel ipsum hendrerit laoreet.
+## Conclusion
 
 ---
-
-#### Citation
-
-Moritz-Maria von Igelfeld. 1997. *Portugese Irregular Verbs*. Regensburg, Germany: Regensburg University Press. http://www.alexandermccallsmith.com/book/portuguese-irregular-verbs.
-
-```BibTeX
-@book{I97,
-author = {Moritz-Maria von Igelfeld},
-year = {1997},
-title = {Portugese Irregular Verbs},
-publisher = {Regensburg University Press},
-address = {Regensburg, Germany},
-url = {http://www.alexandermccallsmith.com/book/portuguese-irregular-verbs}}
-```

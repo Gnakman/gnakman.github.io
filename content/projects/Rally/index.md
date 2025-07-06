@@ -1,6 +1,6 @@
 ---
 title: "Project Rally" 
-date: 1997-01-01
+date: 2025-01-01
 author: ["Nam Kyun Kang"]
 description: "Virtual design of a Rally car"
 summary: "Converting DrivAer estate into a rally1 car"

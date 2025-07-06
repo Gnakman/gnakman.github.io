@@ -1,6 +1,6 @@
 ---
 title: "GR1" 
-date: 1996-01-01
+date: 2025-01-01
 author: ["Nam Kyun Kang"]
 description: "Genesis Magma"
 summary: "My involvement with Genesis Magma Hypercar"

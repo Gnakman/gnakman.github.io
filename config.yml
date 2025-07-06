@@ -83,7 +83,7 @@ params:
         hiddenInSingle: true
     label:
       text: "Nam Kyun Kang"
-      icon: favicon.ico
+      icon: vonKarman.ico
       iconHeight: 18
 
 markup:

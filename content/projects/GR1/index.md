@@ -1,11 +1,11 @@
 ---
-title: "Project Rally" 
-date: 1997-01-01
+title: "GR1" 
+date: 1996-01-01
 author: ["Nam Kyun Kang"]
-description: "Virtual design of a Rally car"
-summary: "Converting DrivAer estate into a rally1 car"
+description: "Genesis Magma"
+summary: "My involvement with Genesis Magma Hypercar"
 cover:
-    image: "259cfef1c1cb43d4897296e7b747993c.jpg"
+    image: "5216-GENESISMAGMARACINGDEBUTSFULL-SCALEGMR-001HYPERCARUSHERINGINANEWERAOFATHLETICELEGANCE.jpg"
     alt: "Portugese Irregular Verbs"
     relative: true
 editPost:

@@ -68,8 +68,8 @@ params:
     socialIcons:
         - name: LinkedIn
           url: https://www.linkedin.com/in/nam-kang-5450b4254/
-        
-        
+        - name: eMail
+          url: mailto:nkkang@gmail.com
         - name: Google Scholar
           url: https://scholar.google.com/citations?user=DIjPHxgAAAAJ&hl=en
         - name: GitHub

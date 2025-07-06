@@ -4,5 +4,4 @@ Since 2022 I have been working as an aerodynamics engineer at [Hyundai Motor Com
 
 I attended the [University of Windsor](https://www.uwindsor.ca/engineering/), obtaining both Bachelor of Applied Science and Master of Applied Science there. I started working on aerodynamics since the third year of my undergrad days, and I have not stopped since then. 
 
-I was born in South Korea and spent time in Korea, Malaysia, and Canada. My family finally decided to settle down in Ontario, Canada.
-I currently reside in Metro Detroit. I am fluent in Korean(강남균) and English(Nam). 
+I am an avid hiker, where I thru-hiked the Pacific Crest Trail and the Colorado Trail. I also walked from Windsor, ON to Quebec City, QC once. 

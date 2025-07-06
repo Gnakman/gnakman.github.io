@@ -17,7 +17,7 @@ disableAnchoredHeadings: false
 ---
 
 #### Background
-I was involved with the early development of Genesis Hypercar GR1. Working with the Genesis design studio in Irvine I was able to guide the designers to consider the aerodynamic balance and the efficiency of the vehicle. 
+I was involved with the early development of Genesis Hypercar GR1. Working with the Genesis design studio in Irvine I was able to guide the designers to consider the aerodynamic balance and the efficiency of the vehicle. I cannot document every detail of the work, but I will write a few points about these hypercars using publically available images.
 
 
 

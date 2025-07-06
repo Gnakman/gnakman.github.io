@@ -1,6 +1,6 @@
 ### Short Biography
 
-Since 2022 I have been working as an aerodynamics engineer at Hyundai Motor Company, where most of my time is spent on improving/creating new methodologies to enhance the aerodynamic development process. I do get involved with vehicle development work, for that my role is limited to CFD analysis of HMG vehicle. 
+Since 2022 I have been working as an aerodynamics engineer at [Hyundai Motor Company](https://www.hyundai.com/worldwide/en), where most of my time is spent on improving/creating new methodologies to enhance the aerodynamic development process. I do get involved with vehicle development work, for that my role is limited to CFD analysis of HMG vehicle. 
 
 I was (interim) Professor for IT security at Paderborn University from October 2019 to September 2020. Before, I was a PostDoc in [Eric Bodden's](https://www.bodden.de/) [Secure Software Engineering Group](https://www.hni.uni-paderborn.de/sse/) at the [Heinz Nixdorf Institute](https://www.hni.uni-paderborn.de/).
 

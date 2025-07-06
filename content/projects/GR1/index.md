@@ -5,7 +5,7 @@ author: ["Nam Kyun Kang"]
 description: "Virtual design of a Rally car"
 summary: "Converting DrivAer estate into a rally1 car"
 cover:
-    image: "book1.png"
+    image: "259cfef1c1cb43d4897296e7b747993c.jpg"
     alt: "Portugese Irregular Verbs"
     relative: true
 editPost:

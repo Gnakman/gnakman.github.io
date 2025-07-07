@@ -54,8 +54,8 @@ params:
           title: Nam Kyun Kang 
           subtitle: "I am an aerodynamicist with a passion for ground vehicle aerodynamics and motorsports. I hope to use this site to chronicle my career and document some of the things that I have learned along the way."
           imageUrl: "Profile.jpg"
-          imageWidth: 400
-          imageHeight: 400
+          imageWidth: 300
+          imageHeight: 300
           buttons:
             - name: Projects # Books
               url: projects/ # Books

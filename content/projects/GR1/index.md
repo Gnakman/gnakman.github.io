@@ -32,17 +32,15 @@ The typical value of $C_{L}/C_{D}$ ranges from 2 - 4 for LMP1 vehicles.
 
 Aerodynamic balance is the ratio between front lift ($C_{LF}$) and rear Lift ($C_{LR}$). There is a bit of a rear bias to aid in cornering for these kind of vehicles, but this value will also depend on the circuit. The target was not defined during the development, and I had to create my own target based on my previous experience as a FSAE aerodynamics team member. 
 
-I decided the target to be:
-+ $C_{L}/C_{D}$ = 3
-+ $C_{LF}/C_{LR}$ = 1
-
-At the end of the day, the real development will be done by the Magma team and my job was to ensure that they would not have to alter the geometry that much. 
+Based on the numbers above, I determined the targets accordingly. At the end of the day, the real development work will be done by the Magma team and my job was to ensure the vehicle was as realistic as possible. 
 
 ---
 
 ## Aero Items
-The items below were utilized to meet my self-imposed aero target, since the changes I could make to the exterior of the vehicle was very limited. I am what you call a "theme-breaker".
+The items below were utilized to meet my self-imposed aero target, since the changes I could make to the exterior of the vehicle was very limited. The items are nothing new and they have been around for a very long time. I just had to introduce these items to the designers and let them know that these have to be integrated into their theme if they really want to design a very high performance vehicle. 
 ### Dive Planes & Splitter
+
+Splitter and dive planes (canards) are required to increase downforce at the front of the vehicle. Flow tends to accelerate when it travels along the hood area, but pressure decreases since energy is conserved. This increases the lift and especially $C_{LF}$
 
 ---
 ### Diffuser
@@ -54,10 +52,6 @@ The items below were utilized to meet my self-imposed aero target, since the cha
 ### Shark Fin
 
 ---
-
-
-
-
 
 ## Conclusion
 

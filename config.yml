@@ -36,13 +36,13 @@ params:
     ShowReadingTime: false
     disableSpecial1stPost: true
     disableAnchoredHeadings: false
-    ShowPostNavLinks: false
-    ShowBreadCrumbs: false
+    ShowPostNavLinks: true
+    ShowBreadCrumbs: true
     ShowCodeCopyButtons: true
     ShowAllPagesInArchive: false
     MainSections: ["projects","aerodynamics","misc"]
     ShowToc: false
-    disableScrollToTop: true
+    disableScrollToTop: false
     TocOpen: true
     ShowWordCount: false
     UseHugoToc: true
@@ -83,7 +83,7 @@ params:
         hiddenInSingle: true
     label:
       text: "Nam Kyun Kang"
-      icon: favicon.ico
+      icon: vonKarman.ico
       iconHeight: 18
 
 markup:

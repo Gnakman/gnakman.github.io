@@ -4,4 +4,4 @@ Since 2022 I have been working as an aerodynamics engineer at [Hyundai Motor Com
 
 I attended the [University of Windsor](https://www.uwindsor.ca/engineering/), obtaining both Bachelor of Applied Science and Master of Applied Science there. I started working on aerodynamics since the third year of my undergrad days, and I have not stopped since then. 
 
-I am an avid hiker spending a lot of my free time in the back-country with a backpack and a tent. I spent a few summers hiking a couple National Scenic Trails and parts of Trans Canada Trail.
+Being an avid hiker, I thru-hiked the Pacific Crest Trail and the Colorado Trail. I also walked from Windsor, ON to Quebec City, QC. I think I hiked around 4000 miles around North America. 

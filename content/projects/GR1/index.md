@@ -28,7 +28,7 @@ Aerodynamic efficiency refers to the ratio between lift ($C_{L}$) and drag ($C_{
 The typical value of $C_{L}/C_{D}$ ranges from 2 - 4 for LMP1 vehicles.
 + At Le Mans, there is a lot of long stretches with striaght lines  which means that $C_{L}/C_{D}$ will be closer to 4 
 
-+ At Bahrain, the course is a mixture of long straights and low speed corner so $C_{L}/C_{D}$ will be closer to 2 or 3 
++ Course with high speed corner, the vehicle requires greater downforce for it to stick to the track. Greater downforce leads to an increase in drag which means $C_{L}/C_{D}$ will go down
 
 Aerodynamic balance is the ratio between front lift ($C_{LF}$) and rear Lift ($C_{LR}$). There is a bit of a rear bias to aid in cornering for these kind of vehicles, but this value will also depend on the circuit. The target was not defined during the development, and I had to create my own target based on my previous experience as a FSAE aerodynamics team member. 
 

@@ -30,7 +30,7 @@ The typical value of $C_{L}/C_{D}$ ranges from 2 - 4 for LMP1 vehicles.
 
 + Course with high speed corner, the vehicle requires greater downforce for it to stick to the track. Greater downforce leads to an increase in drag which means $C_{L}/C_{D}$ will go down
 
-Aerodynamic balance is the ratio between front lift ($C_{LF}$) and rear Lift ($C_{LR}$). There is a bit of a rear bias to aid in cornering for these kind of vehicles, but this value will also depend on the circuit. The target was not defined during the development, and I had to create my own target based on my previous experience as a FSAE aerodynamics team member. 
+Aerodynamic balance is conventionally defined as $C_{LF}/C_{L}$. There is a bit of a rear bias to aid in cornering for these kind of vehicles, but this value will also depend on the circuit. The target was not defined during the development, and I had to create my own target based on my previous experience as a FSAE aerodynamics team member. 
 
 Based on the numbers above, I determined the targets accordingly. At the end of the day, the real development work will be done by the Magma team and my job was to ensure the vehicle was as realistic as possible. 
 

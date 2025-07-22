@@ -30,7 +30,7 @@ The typical value of $C_{L}/C_{D}$ ranges from 2 - 4 for LMP1 vehicles.
 
 + Course with high speed corner, the vehicle requires greater downforce for it to stick to the track. Greater downforce leads to an increase in drag which means $C_{L}/C_{D}$ will go down
 
-Aerodynamic balance is conventionally defined as $C_{LF}/C_{L}$ and if this number is smaller than 0.5 then we know that downforce acting on the rear tire is larger than the front. There is a bit of a rear bias to aid in cornering for these kind of vehicles, but this value will also depend on the circuit. The target was not defined during the development, and I had to create my own target based on my previous experience as a FSAE aerodynamics team member. 
+Aerodynamic balance is conventionally defined as $C_{LF}/C_{L}$ and if this number is smaller than 0.5 then we know that downforce acting on the rear tire is larger than the front. There is a bit of a rear bias to aid in cornering for these kind of vehicles, but this value will also depend on the circuit as well as the driver. The target was not defined during the development, and I had to create my own target based on my previous experience as a FSAE aerodynamics team member. 
 
 Based on the numbers above, I determined the targets accordingly. At the end of the day, the real development work will be done by the Magma team and my job was to ensure the vehicle was as realistic as possible. 
 
@@ -40,7 +40,7 @@ Based on the numbers above, I determined the targets accordingly. At the end of 
 The items below were utilized to meet my self-imposed aero target, since the changes I could make to the exterior of the vehicle was very limited. The items are nothing new and they have been around for a very long time. I just had to introduce these items to the designers and let them know that these have to be integrated into their theme if they really want to design a very high performance vehicle. 
 ### Dive Planes & Splitter
 
-Splitter and dive planes (canards) are required to increase downforce at the front of the vehicle. Flow tends to accelerate when it travels along the hood area, but pressure decreases since energy is conserved. This increases the lift and especially $C_{LF}$
+As air travels along the bonnet, it accelerates which in turn decreases the pressure quite a bit. Decrease in pressure leads to reduction in downforce which must be mitigated. Instead of a front wing, dive planes and a splitter can be fitted at the front which will help to increase downforce at the front. 
 
 ---
 ### Diffuser

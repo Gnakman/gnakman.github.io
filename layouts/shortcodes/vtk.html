@@ -6,9 +6,6 @@
     height  (optional) CSS height of the viewer, default "500px"
     title   (optional) caption shown above the viewer
   File goes in: static/vtk/yourfile.vtp
-  Usage (in .md content):
-    vtk file="/vtk/cavity.vtp" colorBy="p" title="Cavity pressure"
-    (wrap in Hugo shortcode delimiters without the slash-star escapes)
 */ -}}
 
 {{- $file    := .Get "file" -}}
@@ -33,148 +30,155 @@
 
     <div id="vtk-overlay-{{ $id }}" class="vtk-overlay">
       <div class="vtk-spinner"></div>
-      <p id="vtk-status-{{ $id }}" class="vtk-status">Initialising…</p>
+      <p id="vtk-status-{{ $id }}" class="vtk-status">Loading viewer…</p>
     </div>
 
   </div>
 </div>
 
 {{/*
-  The importmap must appear exactly once per page and before any
-  <script type="module"> that uses it. Emit it on the first shortcode only.
+  Load vtk.js ONCE per page as two parallel requests:
+    1. vtk.bundle.mjs  — the full pre-built vtk.js library (~5 MB gzipped),
+                         sets window.vtk as a side effect
+    2. Geometry?bundle — registers the WebGL rendering backend (required)
+
+  This replaces the old importmap approach which caused 100+ sequential
+  HTTP requests and made the page take 10–30 s before rendering started.
+  After the first visit both files are cached by the browser.
 */}}
 {{- if not (.Page.Store.Get "vtkjs") -}}
   {{- .Page.Store.Set "vtkjs" true -}}
-<script type="importmap">
-{
-  "imports": {
-    "@kitware/vtk.js/": "https://esm.sh/@kitware/vtk.js/"
-  }
-}
+<script type="module">
+  import 'https://esm.sh/@kitware/vtk.js@36.1.0/es2020/vtk.bundle.mjs';
+  import 'https://esm.sh/@kitware/vtk.js/Rendering/Profiles/Geometry?bundle&target=es2020';
+  window.__vtkReady = true;
 </script>
 {{- end -}}
 
-<script type="module">
-  /*
-   * Register the WebGL rendering backend — MUST be imported before any
-   * rendering classes are instantiated. Without this nothing draws.
-   */
-  import '@kitware/vtk.js/Rendering/Profiles/Geometry';
+<script>
+(function () {
+  var FILE     = {{ $file    | jsonify | safeJS }};
+  var COLOR_BY = {{ $colorBy | jsonify | safeJS }};
+  var MOUNT    = 'vtk-mount-{{ $id }}';
+  var OVERLAY  = 'vtk-overlay-{{ $id }}';
+  var STATUS   = 'vtk-status-{{ $id }}';
 
-  import vtkGenericRenderWindow      from '@kitware/vtk.js/Rendering/Misc/GenericRenderWindow';
-  import vtkActor                    from '@kitware/vtk.js/Rendering/Core/Actor';
-  import vtkMapper                   from '@kitware/vtk.js/Rendering/Core/Mapper';
-  import vtkColorTransferFunction    from '@kitware/vtk.js/Rendering/Core/ColorTransferFunction';
-  import vtkXMLPolyDataReader        from '@kitware/vtk.js/IO/XML/XMLPolyDataReader';
-  import vtkInteractorStyleTrackballCamera
-    from '@kitware/vtk.js/Interaction/Style/InteractorStyleTrackballCamera';
-
-  /* Hugo injects these at build time */
-  const FILE     = {{ $file    | jsonify | safeJS }};
-  const COLOR_BY = {{ $colorBy | jsonify | safeJS }};
-  const MOUNT    = 'vtk-mount-{{ $id }}';
-  const OVERLAY  = 'vtk-overlay-{{ $id }}';
-  const STATUS   = 'vtk-status-{{ $id }}';
-
-  const setStatus  = msg => { const e = document.getElementById(STATUS);  if (e) e.textContent = msg; };
-  const hideOverlay= ()  => { const e = document.getElementById(OVERLAY); if (e) e.style.display = 'none'; };
-  const showError  = msg => {
-    const ov = document.getElementById(OVERLAY);
-    const st = document.getElementById(STATUS);
+  function setStatus(msg) {
+    var el = document.getElementById(STATUS); if (el) el.textContent = msg;
+  }
+  function hideOverlay() {
+    var el = document.getElementById(OVERLAY); if (el) el.style.display = 'none';
+  }
+  function showError(msg) {
+    var ov = document.getElementById(OVERLAY);
+    var st = document.getElementById(STATUS);
     if (ov) ov.classList.add('vtk-overlay--error');
     if (st) st.textContent = '⚠️ ' + msg;
-  };
+  }
 
-  async function init() {
-    const mount = document.getElementById(MOUNT);
+  /* Poll until vtk.js finishes loading (module scripts are deferred) */
+  function initViewer() {
+    if (!window.__vtkReady) { setTimeout(initViewer, 100); return; }
+    startViewer();
+  }
+
+  function startViewer() {
+    var vtk   = window.vtk;
+    var mount = document.getElementById(MOUNT);
     if (!mount) return;
 
     /* ── Render window ── */
-    const grw = vtkGenericRenderWindow.newInstance({
-      background: [0.141, 0.153, 0.227],   /* #24273a — Catppuccin bg */
+    var grw = vtk.Rendering.Misc.vtkGenericRenderWindow.newInstance({
+      background: [0.141, 0.153, 0.227]
     });
     grw.setContainer(mount);
+    requestAnimationFrame(function () { grw.resize(); });
+    new ResizeObserver(function () {
+      grw.resize(); grw.getRenderWindow().render();
+    }).observe(mount);
 
-    /* Wait one frame so the browser has laid out the container,
-       then size the canvas and keep it in sync on resize. */
-    requestAnimationFrame(() => grw.resize());
-    new ResizeObserver(() => { grw.resize(); grw.getRenderWindow().render(); }).observe(mount);
-
-    const renderer     = grw.getRenderer();
-    const renderWindow = grw.getRenderWindow();
+    var renderer     = grw.getRenderer();
+    var renderWindow = grw.getRenderWindow();
 
     renderWindow.getInteractor().setInteractorStyle(
-      vtkInteractorStyleTrackballCamera.newInstance()
+      vtk.Interaction.Style.vtkInteractorStyleTrackballCamera.newInstance()
     );
 
-    /* ── Fetch the VTP file with progress ── */
+    /* ── Fetch the VTP file ── */
     setStatus('Downloading mesh…');
-    try {
-      const response = await fetch(FILE);
-      if (!response.ok) throw new Error(`HTTP ${response.status} — file not found: ${FILE}`);
 
-      const total  = parseInt(response.headers.get('content-length') || '0', 10);
-      const reader = response.body.getReader();
-      const chunks = [];
-      let received = 0;
+    fetch(FILE)
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status + ' — file not found: ' + FILE);
 
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        chunks.push(value);
-        received += value.length;
-        if (total) setStatus(`Downloading… ${Math.round(received / total * 100)}%`);
-      }
+        var total    = parseInt(r.headers.get('content-length') || '0', 10);
+        var reader   = r.body.getReader();
+        var received = 0;
+        var chunks   = [];
 
-      /* ── Parse ── */
-      setStatus('Parsing…');
-      const buf       = await new Blob(chunks).arrayBuffer();
-      const vtkReader = vtkXMLPolyDataReader.newInstance();
-      vtkReader.parseAsArrayBuffer(buf);
-      const polyData  = vtkReader.getOutputData(0);
-
-      /* ── Map ── */
-      const mapper = vtkMapper.newInstance();
-      mapper.setInputData(polyData);
-
-      if (COLOR_BY) {
-        const ptArr   = polyData.getPointData().getArrayByName(COLOR_BY);
-        const cellArr = polyData.getCellData().getArrayByName(COLOR_BY);
-        const arr     = ptArr || cellArr;
-
-        if (arr) {
-          const [min, max] = arr.getRange();
-
-          /* Cool-to-warm: blue → white → red */
-          const lut = vtkColorTransferFunction.newInstance();
-          lut.addRGBPoint(min,           0.231, 0.298, 0.752);
-          lut.addRGBPoint((min+max)/2,   0.865, 0.865, 0.865);
-          lut.addRGBPoint(max,           0.706, 0.016, 0.149);
-
-          mapper.setLookupTable(lut);
-          mapper.setScalarRange(min, max);
-          mapper.setColorByArrayName(COLOR_BY);
-          mapper.setScalarVisibility(true);
-          if (ptArr) mapper.setScalarModeToUsePointFieldData();
-          else       mapper.setScalarModeToUseCellFieldData();
-        } else {
-          console.warn(`[vtk-viewer] Array "${COLOR_BY}" not found — rendering without colour`);
+        function pump() {
+          return reader.read().then(function (d) {
+            if (d.done) return;
+            chunks.push(d.value);
+            received += d.value.length;
+            if (total) setStatus('Downloading… ' + Math.round(received / total * 100) + '%');
+            return pump();
+          });
         }
-      }
+        return pump().then(function () {
+          return new Blob(chunks).arrayBuffer();
+        });
+      })
+      .then(function (buf) {
+        setStatus('Parsing…');
 
-      /* ── Render ── */
-      const actor = vtkActor.newInstance();
-      actor.setMapper(mapper);
-      renderer.addActor(actor);
-      renderer.resetCamera();
-      renderWindow.render();
-      hideOverlay();
+        var vtkReader = vtk.IO.XML.vtkXMLPolyDataReader.newInstance();
+        vtkReader.parseAsArrayBuffer(buf);
+        var polyData = vtkReader.getOutputData(0);
 
-    } catch (err) {
-      console.error('[vtk-viewer]', err);
-      showError(err.message);
-    }
+        var mapper = vtk.Rendering.Core.vtkMapper.newInstance();
+        mapper.setInputData(polyData);
+
+        if (COLOR_BY) {
+          var ptArr   = polyData.getPointData().getArrayByName(COLOR_BY);
+          var cellArr = polyData.getCellData().getArrayByName(COLOR_BY);
+          var arr     = ptArr || cellArr;
+
+          if (arr) {
+            var range = arr.getRange();
+            var lut   = vtk.Rendering.Core.vtkColorTransferFunction.newInstance();
+            lut.addRGBPoint(range[0],                    0.231, 0.298, 0.752);
+            lut.addRGBPoint((range[0] + range[1]) / 2,   0.865, 0.865, 0.865);
+            lut.addRGBPoint(range[1],                    0.706, 0.016, 0.149);
+
+            mapper.setLookupTable(lut);
+            mapper.setScalarRange(range[0], range[1]);
+            mapper.setColorByArrayName(COLOR_BY);
+            mapper.setScalarVisibility(true);
+            if (ptArr) mapper.setScalarModeToUsePointFieldData();
+            else       mapper.setScalarModeToUseCellFieldData();
+          } else {
+            console.warn('[vtk-viewer] Array "' + COLOR_BY + '" not found — rendering without colour');
+          }
+        }
+
+        var actor = vtk.Rendering.Core.vtkActor.newInstance();
+        actor.setMapper(mapper);
+        renderer.addActor(actor);
+        renderer.resetCamera();
+        renderWindow.render();
+        hideOverlay();
+      })
+      .catch(function (err) {
+        console.error('[vtk-viewer]', err);
+        showError(err.message);
+      });
   }
 
-  init();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initViewer);
+  } else {
+    initViewer();
+  }
+})();
 </script>

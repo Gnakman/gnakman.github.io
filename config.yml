@@ -40,7 +40,8 @@ params:
     ShowBreadCrumbs: true
     ShowCodeCopyButtons: true
     ShowAllPagesInArchive: false
-    MainSections: ["projects","aerodynamics","misc"]
+    #MainSections: ["projects","aerodynamics","misc"]
+    MainSections: ["projects"]
     ShowToc: false
     disableScrollToTop: false
     TocOpen: true

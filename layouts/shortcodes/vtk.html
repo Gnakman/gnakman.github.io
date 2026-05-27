@@ -42,17 +42,23 @@
     helper missing in the copy in use ("Ka is not a function") and the WebGL
     backend registered by one copy is invisible to another (blank canvas).
 
-  Why esm.sh ?bundle&target=es2019 specifically:
-    - Default esm.sh target (es2022) emits native `class X extends Y`, which
-      evaluates Y eagerly; with vtk.js's circular deps that throws
-      "Class extends value #<Object> is not a constructor". target=es2019
-      transpiles inheritance to __extends helpers that tolerate the cycles.
-    - jsDelivr +esm leaves xmlbuilder2 as an external ESM whose CJS->ESM
-      conversion lacks the named `create` export vtk.js imports -> throws
-      "does not provide an export named 'create'". esm.sh INLINES xmlbuilder2
-      as its UMD build, so that interop problem never arises.
-    Net: one ~2.6 MB file (one registry) that sets window.vtk; only small
-    stateless deps (gl-matrix, d3-scale, seedrandom, …) remain as shared URLs.
+  Why jsDelivr +esm (Rollup) and NOT esm.sh ?bundle:
+    esm.sh's bundle (any target) re-threw a circular-dep "Class extends value
+    #<Object> is not a constructor" during evaluation — one of the external
+    dep modules it emits still trips on the cycle. jsDelivr's +esm is built
+    with Rollup, which orders vtk.js's circular deps correctly and evaluates
+    cleanly. It is one ~2 MB file (one registry) that sets window.vtk.
+
+  The one snag jsDelivr +esm has — and the import map that fixes it:
+    The bundle statically does `import { create } from xmlbuilder2`, used only
+    by vtk.js's XML *writer*. We only *read* .vtp (the reader uses the browser
+    parser, not xmlbuilder2), so that path is dead code — but the import must
+    still link, and jsDelivr's xmlbuilder2 +esm exposes no named `create`
+    (default-only CJS), so linking throws "does not provide an export named
+    'create'". The import map below remaps that exact dependency URL to a local
+    shim that exports a `create` stub, satisfying the link. (Import maps apply
+    to the whole realm, so they intercept imports made by the cross-origin
+    bundle too; the key is the fully-resolved jsDelivr URL.)
 
   Backend registration:
     The bundle ships the OpenGL/WebGL classes but does NOT auto-register them
@@ -64,11 +70,18 @@
 */}}
 {{- if not (.Page.Store.Get "vtkjs") -}}
 {{- .Page.Store.Set "vtkjs" true -}}
+<script type="importmap">
+{
+  "imports": {
+    "https://cdn.jsdelivr.net/npm/xmlbuilder2@3.1.1/+esm": "/vtk/xmlbuilder2-shim.js"
+  }
+}
+</script>
 <script type="module">
 (async function () {
   try {
-    /* One transpiled bundle of all vtk.js sources -> one registry. */
-    await import('https://esm.sh/@kitware/vtk.js@36.1.0?bundle&target=es2019');
+    /* One Rollup-built bundle of all vtk.js sources -> one registry. */
+    await import('https://cdn.jsdelivr.net/npm/@kitware/vtk.js@36.1.0/+esm');
 
     var vtk = window.vtk;
     if (!vtk || !vtk.Rendering) throw new Error('window.vtk not populated by bundle');

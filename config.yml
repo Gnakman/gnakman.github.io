@@ -14,7 +14,7 @@ menu:
     main:
         - name: OpenFOAM
           url: OpenFOAM/
-          weight: 3
+          weight: 2
         - name: Projects
           url: projects/
           weight: 1

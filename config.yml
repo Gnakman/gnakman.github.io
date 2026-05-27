@@ -124,9 +124,9 @@ markup:
     guessSyntax: true
     hl_Lines: ""
     lineNoStart: 1
-    lineNos: false
+    lineNos: true
     lineNumbersInTable: true
-    noClasses: true
+    noClasses: false
     style: autumn
     tabWidth: 4
   tableOfContents:

@@ -1,0 +1,62 @@
+/*
+ * IDE-style code window chrome
+ * Adds a title bar at the top of every syntax-highlighted block so it
+ * resembles an open file in VSCode / Notepad++.
+ *
+ * The bar lives INSIDE the .highlight box (padding-top approach) so it
+ * never bleeds over text that sits above the code block.
+ */
+
+.post-content .highlight {
+    position: relative;
+    padding-top: 28px;          /* space occupied by the title bar */
+    border-radius: 6px;
+    overflow: hidden;           /* clip everything to the border-radius */
+}
+
+/* The fake IDE title bar — sits at the very top of the block */
+.post-content .highlight::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 28px;
+    background: #1e1e2e;
+    border-bottom: 1px solid #313244;
+}
+
+/* Three coloured window-control dots */
+.post-content .highlight::after {
+    content: "● ● ●";
+    position: absolute;
+    top: 7px;                   /* vertically centred in the 28px bar */
+    left: 10px;
+    font-size: 0.55rem;
+    letter-spacing: 0.25rem;
+    background: linear-gradient(to right,
+        #ff5f57 0 1ch,
+        transparent 1ch 2ch,
+        #febc2e 2ch 3ch,
+        transparent 3ch 4ch,
+        #28c840 4ch 5ch
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    pointer-events: none;
+}
+
+/* Line number column — subtle separator */
+.post-content .highlight .lntd:first-child {
+    border-right: 1px solid #313244;
+    background: #1e1e2e;
+}
+
+/* Slightly widen the gutter for readability */
+.post-content .highlight .lnt {
+    padding: 0 0.8em;
+    min-width: 2.5em;
+    text-align: right;
+}

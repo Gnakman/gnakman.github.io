@@ -18,39 +18,58 @@
   {{- with $title }}<p class="vtk-label">{{ . }}</p>{{ end -}}
 
   <div class="vtk-shell" style="height:{{ $height }}">
-
     <div class="vtk-bar">
       <span class="vtk-dot" style="background:#ff5f57"></span>
       <span class="vtk-dot" style="background:#febc2e"></span>
       <span class="vtk-dot" style="background:#28c840"></span>
       <span class="vtk-bar-name">{{ $file | path.Base }}</span>
     </div>
-
     <div id="vtk-mount-{{ $id }}" class="vtk-mount"></div>
-
     <div id="vtk-overlay-{{ $id }}" class="vtk-overlay">
       <div class="vtk-spinner"></div>
       <p id="vtk-status-{{ $id }}" class="vtk-status">Loading viewer…</p>
     </div>
-
   </div>
 </div>
 
 {{/*
-  Load vtk.js ONCE per page as two parallel requests:
-    1. vtk.bundle.mjs  — the full pre-built vtk.js library (~5 MB gzipped),
-                         sets window.vtk as a side effect
-    2. Geometry?bundle — registers the WebGL rendering backend (required)
-
-  This replaces the old importmap approach which caused 100+ sequential
-  HTTP requests and made the page take 10–30 s before rendering started.
-  After the first visit both files are cached by the browser.
+  Load vtk.js once per page.
+  - importmap maps the bare @kitware/vtk.js/ specifier to esm.sh
+  - the module script imports exactly the six classes we need and the
+    geometry rendering profile, then stores them in window.__vtk
+  - a plain <script> per shortcode polls window.__vtkReady and starts
+    the viewer once the module has finished loading
 */}}
 {{- if not (.Page.Store.Get "vtkjs") -}}
-  {{- .Page.Store.Set "vtkjs" true -}}
+{{- .Page.Store.Set "vtkjs" true -}}
+<script type="importmap">
+{
+  "imports": {
+    "@kitware/vtk.js/": "https://esm.sh/@kitware/vtk.js@36.1.0/"
+  }
+}
+</script>
 <script type="module">
-  import 'https://esm.sh/@kitware/vtk.js@36.1.0/es2020/vtk.bundle.mjs';
-  import 'https://esm.sh/@kitware/vtk.js/Rendering/Profiles/Geometry?bundle&target=es2020';
+  /* Register the WebGL geometry backend — must come first */
+  import '@kitware/vtk.js/Rendering/Profiles/Geometry';
+
+  import vtkGenericRenderWindow         from '@kitware/vtk.js/Rendering/Misc/GenericRenderWindow';
+  import vtkActor                       from '@kitware/vtk.js/Rendering/Core/Actor';
+  import vtkMapper                      from '@kitware/vtk.js/Rendering/Core/Mapper';
+  import vtkColorTransferFunction       from '@kitware/vtk.js/Rendering/Core/ColorTransferFunction';
+  import vtkXMLPolyDataReader           from '@kitware/vtk.js/IO/XML/XMLPolyDataReader';
+  import vtkInteractorStyleTrackballCamera
+    from '@kitware/vtk.js/Interaction/Style/InteractorStyleTrackballCamera';
+
+  /* Store the classes in a plain global — no window.vtk namespace needed */
+  window.__vtk = {
+    vtkGenericRenderWindow,
+    vtkActor,
+    vtkMapper,
+    vtkColorTransferFunction,
+    vtkXMLPolyDataReader,
+    vtkInteractorStyleTrackballCamera
+  };
   window.__vtkReady = true;
 </script>
 {{- end -}}
@@ -76,46 +95,43 @@
     if (st) st.textContent = '⚠️ ' + msg;
   }
 
-  /* Poll until vtk.js finishes loading (module scripts are deferred) */
   function initViewer() {
+    /* module scripts are deferred — poll until they finish */
     if (!window.__vtkReady) { setTimeout(initViewer, 100); return; }
     startViewer();
   }
 
   function startViewer() {
-    var vtk   = window.vtk;
+    var vtk   = window.__vtk;
     var mount = document.getElementById(MOUNT);
     if (!mount) return;
 
     /* ── Render window ── */
-    var grw = vtk.Rendering.Misc.vtkGenericRenderWindow.newInstance({
-      background: [0.141, 0.153, 0.227]
+    var grw = vtk.vtkGenericRenderWindow.newInstance({
+      background: [0.141, 0.153, 0.227]   /* #24273a */
     });
     grw.setContainer(mount);
     requestAnimationFrame(function () { grw.resize(); });
     new ResizeObserver(function () {
-      grw.resize(); grw.getRenderWindow().render();
+      grw.resize();
+      grw.getRenderWindow().render();
     }).observe(mount);
 
     var renderer     = grw.getRenderer();
     var renderWindow = grw.getRenderWindow();
 
     renderWindow.getInteractor().setInteractorStyle(
-      vtk.Interaction.Style.vtkInteractorStyleTrackballCamera.newInstance()
+      vtk.vtkInteractorStyleTrackballCamera.newInstance()
     );
 
-    /* ── Fetch the VTP file ── */
+    /* ── Fetch VTP file with progress ── */
     setStatus('Downloading mesh…');
-
     fetch(FILE)
       .then(function (r) {
-        if (!r.ok) throw new Error('HTTP ' + r.status + ' — file not found: ' + FILE);
-
+        if (!r.ok) throw new Error('HTTP ' + r.status + ' — not found: ' + FILE);
         var total    = parseInt(r.headers.get('content-length') || '0', 10);
         var reader   = r.body.getReader();
-        var received = 0;
-        var chunks   = [];
-
+        var received = 0, chunks = [];
         function pump() {
           return reader.read().then(function (d) {
             if (d.done) return;
@@ -125,32 +141,27 @@
             return pump();
           });
         }
-        return pump().then(function () {
-          return new Blob(chunks).arrayBuffer();
-        });
+        return pump().then(function () { return new Blob(chunks).arrayBuffer(); });
       })
       .then(function (buf) {
         setStatus('Parsing…');
-
-        var vtkReader = vtk.IO.XML.vtkXMLPolyDataReader.newInstance();
+        var vtkReader = vtk.vtkXMLPolyDataReader.newInstance();
         vtkReader.parseAsArrayBuffer(buf);
         var polyData = vtkReader.getOutputData(0);
 
-        var mapper = vtk.Rendering.Core.vtkMapper.newInstance();
+        var mapper = vtk.vtkMapper.newInstance();
         mapper.setInputData(polyData);
 
         if (COLOR_BY) {
           var ptArr   = polyData.getPointData().getArrayByName(COLOR_BY);
           var cellArr = polyData.getCellData().getArrayByName(COLOR_BY);
           var arr     = ptArr || cellArr;
-
           if (arr) {
             var range = arr.getRange();
-            var lut   = vtk.Rendering.Core.vtkColorTransferFunction.newInstance();
-            lut.addRGBPoint(range[0],                    0.231, 0.298, 0.752);
-            lut.addRGBPoint((range[0] + range[1]) / 2,   0.865, 0.865, 0.865);
-            lut.addRGBPoint(range[1],                    0.706, 0.016, 0.149);
-
+            var lut   = vtk.vtkColorTransferFunction.newInstance();
+            lut.addRGBPoint(range[0],                   0.231, 0.298, 0.752);
+            lut.addRGBPoint((range[0] + range[1]) / 2,  0.865, 0.865, 0.865);
+            lut.addRGBPoint(range[1],                   0.706, 0.016, 0.149);
             mapper.setLookupTable(lut);
             mapper.setScalarRange(range[0], range[1]);
             mapper.setColorByArrayName(COLOR_BY);
@@ -158,11 +169,11 @@
             if (ptArr) mapper.setScalarModeToUsePointFieldData();
             else       mapper.setScalarModeToUseCellFieldData();
           } else {
-            console.warn('[vtk-viewer] Array "' + COLOR_BY + '" not found — rendering without colour');
+            console.warn('[vtk-viewer] Array "' + COLOR_BY + '" not found');
           }
         }
 
-        var actor = vtk.Rendering.Core.vtkActor.newInstance();
+        var actor = vtk.vtkActor.newInstance();
         actor.setMapper(mapper);
         renderer.addActor(actor);
         renderer.resetCamera();

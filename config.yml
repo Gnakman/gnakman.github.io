@@ -12,9 +12,9 @@ taxonomies:
 
 menu:
     main:
-        #- name: Misc
-        #  url: misc/
-        #  weight: 3
+        - name: OpenFOAM
+          url: OpenFOAM/
+          weight: 3
         - name: Projects
           url: projects/
           weight: 1
@@ -41,7 +41,7 @@ params:
     ShowCodeCopyButtons: true
     ShowAllPagesInArchive: false
     #MainSections: ["projects","aerodynamics","misc"]
-    MainSections: ["projects"]
+    MainSections: ["projects","OpenFOAM"]
     ShowToc: false
     disableScrollToTop: false
     TocOpen: true
@@ -62,8 +62,8 @@ params:
               url: projects/ # Books
             #- name: Aerodynamics # Course
             #  url: aerodynamics/ # Aerodynamics
-            #- name: Misc #data
-            #  url: misc/ #Misc
+            - name: OpenFOAM #OpenFOAM
+              url: OpenFOAM/ #Misc
             
 
     socialIcons:

@@ -1,0 +1,117 @@
+/*
+ * VTK surface viewer — styles
+ * Companion to layouts/shortcodes/vtk.html
+ */
+
+/* ── Outer wrapper ─────────────────────────────────────── */
+.vtk-wrapper {
+    margin: 1.5rem 0;
+}
+
+.vtk-label {
+    font-size: 0.85rem;
+    color: var(--secondary);
+    margin: 0 0 0.4rem 0;
+}
+
+/* ── Shell: title bar + canvas, all in one rounded box ─── */
+.vtk-shell {
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #24273a;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── Title bar (same style as the code-window chrome) ──── */
+.vtk-bar {
+    flex-shrink: 0;
+    height: 28px;
+    background: #1e1e2e;
+    border-bottom: 1px solid #313244;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    gap: 6px;
+    z-index: 2;
+}
+
+.vtk-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.vtk-bar-name {
+    font-size: 0.7rem;
+    color: #8087a2;
+    margin-left: 8px;
+    font-family: ui-monospace, "Cascadia Code", "Fira Code", monospace;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ── WebGL canvas area ──────────────────────────────────── */
+.vtk-mount {
+    flex: 1;
+    position: relative;
+    min-height: 0;          /* flex children need this to shrink correctly */
+}
+
+/* vtk.js injects a <canvas> — make sure it fills the mount */
+.vtk-mount canvas {
+    display: block !important;
+    width:  100% !important;
+    height: 100% !important;
+}
+
+/* ── Loading / error overlay ────────────────────────────── */
+.vtk-overlay {
+    position: absolute;
+    inset: 0;               /* covers the mount div only (bar sits above) */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(36, 39, 58, 0.88);
+    gap: 1rem;
+    z-index: 10;
+    border-radius: 0;
+}
+
+.vtk-status {
+    font-size: 0.85rem;
+    color: #cad3f5;
+    margin: 0;
+    letter-spacing: 0.02em;
+}
+
+/* Error state: hide spinner, turn text red */
+.vtk-overlay--error .vtk-spinner { display: none; }
+.vtk-overlay--error .vtk-status  { color: #ed8796; }
+
+/* ── Spinner ─────────────────────────────────────────────── */
+.vtk-spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid #313244;
+    border-top-color: #8aadf4;
+    border-radius: 50%;
+    animation: vtk-spin 0.75s linear infinite;
+}
+
+@keyframes vtk-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ── Hint text shown below the viewer ───────────────────── */
+.vtk-hint {
+    font-size: 0.75rem;
+    color: var(--secondary);
+    text-align: center;
+    margin: 0.35rem 0 0 0;
+}

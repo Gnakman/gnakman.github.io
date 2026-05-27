@@ -70,8 +70,8 @@
     from '@kitware/vtk.js/Interaction/Style/InteractorStyleTrackballCamera';
 
   /* Hugo injects these at build time */
-  const FILE     = {{ $file    | jsonify }};
-  const COLOR_BY = {{ $colorBy | jsonify }};
+  const FILE     = {{ $file    | jsonify | safeJS }};
+  const COLOR_BY = {{ $colorBy | jsonify | safeJS }};
   const MOUNT    = 'vtk-mount-{{ $id }}';
   const OVERLAY  = 'vtk-overlay-{{ $id }}';
   const STATUS   = 'vtk-status-{{ $id }}';

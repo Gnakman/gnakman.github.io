@@ -60,10 +60,10 @@ params:
           buttons:
             - name: Projects # Books
               url: projects/ # Books
-            - name: Aerodynamics # Course
-              url: aerodynamics/ # Aerodynamics
-            - name: Misc #data
-              url: misc/ #Misc
+            #- name: Aerodynamics # Course
+            #  url: aerodynamics/ # Aerodynamics
+            #- name: Misc #data
+            #  url: misc/ #Misc
             
 
     socialIcons:

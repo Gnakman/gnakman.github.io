@@ -7,6 +7,8 @@ showToc: true
 TocOpen: true
 disableAnchoredHeadings: false
 ---
+{{</* vtk file="/vtk/test.vtp" colorBy="p" title="My simulation" */>}}
+
 
 ## What is blockMesh?
 

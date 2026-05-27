@@ -50,15 +50,16 @@
     cleanly. It is one ~2 MB file (one registry) that sets window.vtk.
 
   The one snag jsDelivr +esm has — and the import map that fixes it:
-    The bundle statically does `import { create } from xmlbuilder2`, used only
-    by vtk.js's XML *writer*. We only *read* .vtp (the reader uses the browser
-    parser, not xmlbuilder2), so that path is dead code — but the import must
-    still link, and jsDelivr's xmlbuilder2 +esm exposes no named `create`
-    (default-only CJS), so linking throws "does not provide an export named
-    'create'". The import map below remaps that exact dependency URL to a local
-    shim that exports a `create` stub, satisfying the link. (Import maps apply
-    to the whole realm, so they intercept imports made by the cross-origin
-    bundle too; the key is the fully-resolved jsDelivr URL.)
+    The bundle statically does `import { create } from xmlbuilder2`, but
+    jsDelivr's xmlbuilder2 +esm exposes only a `default` export, so linking
+    throws "does not provide an export named 'create'". vtk.js also CALLS
+    create() at module-init (an XML template), so a stub is not enough — it
+    needs the real thing. The import map below remaps that exact dependency URL
+    to a local shim that re-exports the real create (sourced from esm.sh's
+    self-contained xmlbuilder2, a different URL so it does not loop back through
+    the map). Import maps apply to the whole realm, so they intercept imports
+    made by the cross-origin bundle too; the key is the fully-resolved jsDelivr
+    URL, and the shim is served as .js so GitHub Pages gives it a JS MIME type.
 
   Backend registration:
     The bundle ships the OpenGL/WebGL classes but does NOT auto-register them

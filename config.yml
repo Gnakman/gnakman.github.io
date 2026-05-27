@@ -12,15 +12,15 @@ taxonomies:
 
 menu:
     main:
-        - name: Misc
-          url: misc/
-          weight: 3
+        #- name: Misc
+        #  url: misc/
+        #  weight: 3
         - name: Projects
           url: projects/
           weight: 1
-        - name: Aerodynamics
-          url: aerodynamics/
-          weight: 2
+        #- name: Aerodynamics
+        #  url: aerodynamics/
+        #  weight: 2
 
         
 

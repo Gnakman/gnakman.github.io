@@ -1,6 +1,6 @@
 ---
 title: "blockMesh" 
-date: 2026-06
+date: 2026-06-01
 
 author: ["Nam"]
 description: "Understanding pitzDaily BlockMesh" 

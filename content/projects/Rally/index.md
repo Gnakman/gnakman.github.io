@@ -4,7 +4,6 @@ date: 2025-01-01
 author: ["Nam Kyun Kang"]
 description: "Virtual design of a Rally car"
 summary: "Converting DrivAer estate into a rally1 car"
-draft: true
 cover:
     image: "259cfef1c1cb43d4897296e7b747993c.jpg"
     alt: "Portugese Irregular Verbs"

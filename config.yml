@@ -18,6 +18,9 @@ menu:
         - name: OpenFOAM
           url: OpenFOAM/
           weight: 2
+        - name: OpenFOAM
+          url: OpenFOAM/
+          weight: 2
 
         
 
@@ -55,12 +58,12 @@ params:
           imageWidth: 300
           imageHeight: 300
           buttons:
-            - name: Projects # Books
-              url: /projects/ # Books
-            #- name: Aerodynamics # Course
-            #  url: aerodynamics/ # Aerodynamics
-            - name: OpenFOAM #OpenFOAM
-              url: /OpenFOAM2/ #Misc
+            - name: Projects 
+              url: /projects/ 
+            #- name: Aerodynamics 
+            #  url: aerodynamics
+            - name: OpenFOAM 
+              url: /OpenFOAM/ 
             
 
     socialIcons:

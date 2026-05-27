@@ -33,52 +33,54 @@
 </div>
 
 {{/*
-  Load vtk.js once per page via dynamic import() so errors are catchable.
+  Load vtk.js once per page as ONE consistent bundle.
 
-  Why NOT ?bundle on esm.sh:
-    Each ?bundle file inlines its own copy of vtk.js internals, creating
-    isolated module registries. The Geometry profile would register the WebGL
-    backend into one registry copy while GenericRenderWindow uses another, so
-    no WebGL backend would ever be found — blank canvas with no error.
+  Why the single bundle (esm.sh ?bundle) and NOT per-module imports:
+    vtk.js keeps a global factory/view registry. If different parts of the
+    library are loaded as separate esm.sh modules (the cascade) or separate
+    ?bundle files, each gets its own inlined copy of that registry. The macro
+    system then calls into a copy that lacks a function -> "Ka is not a
+    function", and the WebGL backend registered by one copy is invisible to
+    another -> blank canvas. esm.sh ?bundle inlines ALL of vtk.js's own source
+    into ONE file (vtk.bundle.mjs, ~2.6 MB) with ONE registry. Only the small
+    stateless deps (gl-matrix, d3-scale, seedrandom) remain as shared URLs.
 
-  Why the cascade IS correct here:
-    Non-bundled esm.sh modules use absolute esm.sh URLs for their deps.
-    The browser's ES module cache is keyed by URL, so every vtk.js internal
-    (including the backend registry) is loaded exactly once and shared across
-    all imports, regardless of which top-level module triggered the load.
-    Registry sharing = WebGL backend registered by Geometry profile is seen
-    by GenericRenderWindow. The cascade (100+ small requests) is slow on the
-    first visit but everything is immutably cached thereafter.
+  Backend registration:
+    The bundle ships the OpenGL/WebGL classes but does NOT auto-register them
+    (that is normally the Rendering/Profiles/Geometry side-effect import).
+    We replicate that one registration call against the bundle's own
+    namespaces, so it lands in the same registry GenericRenderWindow reads.
+
+  The bundle sets window.vtk = { Rendering, IO, Interaction, ... }.
 */}}
 {{- if not (.Page.Store.Get "vtkjs") -}}
 {{- .Page.Store.Set "vtkjs" true -}}
 <script type="module">
 (async function () {
-  var B = 'https://esm.sh/@kitware/vtk.js@36.1.0/';
   try {
-    /* 1. Register the WebGL geometry backend first (side-effect import). */
-    await import(B + 'Rendering/Profiles/Geometry');
+    /* One self-contained bundle of all vtk.js sources -> one registry. */
+    await import('https://esm.sh/@kitware/vtk.js@36.1.0?bundle');
 
-    /* 2. Load the six viewer classes in parallel. */
-    var mods = await Promise.all([
-      import(B + 'Rendering/Misc/GenericRenderWindow'),
-      import(B + 'Rendering/Core/Actor'),
-      import(B + 'Rendering/Core/Mapper'),
-      import(B + 'Rendering/Core/ColorTransferFunction'),
-      import(B + 'IO/XML/XMLPolyDataReader'),
-      import(B + 'Interaction/Style/InteractorStyleTrackballCamera'),
-    ]);
+    var vtk = window.vtk;
+    if (!vtk || !vtk.Rendering) throw new Error('window.vtk not populated by bundle');
+
+    /* Register the WebGL view backend (what Profiles/Geometry would do). */
+    var coreRW = vtk.Rendering.Core.vtkRenderWindow;
+    var glRW   = vtk.Rendering.OpenGL.vtkRenderWindow;
+    if (coreRW.registerViewConstructor && coreRW.listViewAPIs().indexOf('WebGL') === -1) {
+      coreRW.registerViewConstructor('WebGL', glRW.newInstance);
+    }
 
     window.__vtk = {
-      vtkGenericRenderWindow           : mods[0].default,
-      vtkActor                         : mods[1].default,
-      vtkMapper                        : mods[2].default,
-      vtkColorTransferFunction         : mods[3].default,
-      vtkXMLPolyDataReader             : mods[4].default,
-      vtkInteractorStyleTrackballCamera: mods[5].default,
+      vtkGenericRenderWindow           : vtk.Rendering.Misc.vtkGenericRenderWindow,
+      vtkActor                         : vtk.Rendering.Core.vtkActor,
+      vtkMapper                        : vtk.Rendering.Core.vtkMapper,
+      vtkColorTransferFunction         : vtk.Rendering.Core.vtkColorTransferFunction,
+      vtkXMLPolyDataReader             : vtk.IO.XML.vtkXMLPolyDataReader,
+      vtkInteractorStyleTrackballCamera: vtk.Interaction.Style.vtkInteractorStyleTrackballCamera,
     };
     window.__vtkReady = true;
-    console.log('[vtk-viewer] VTK.js ready');
+    console.log('[vtk-viewer] VTK.js bundle ready; view APIs =', coreRW.listViewAPIs());
   } catch (err) {
     console.error('[vtk-viewer] VTK.js load failed:', err);
     window.__vtkError = String(err.message || err);

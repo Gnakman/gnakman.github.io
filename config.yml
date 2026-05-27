@@ -12,15 +12,12 @@ taxonomies:
 
 menu:
     main:
-        - name: OpenFOAM
-          url: OpenFOAM/
-          weight: 2
         - name: Projects
           url: projects/
           weight: 1
-        #- name: Aerodynamics
-        #  url: aerodynamics/
-        #  weight: 2
+        - name: OpenFOAM
+          url: OpenFOAM/
+          weight: 2
 
         
 

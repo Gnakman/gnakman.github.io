@@ -56,10 +56,8 @@ params:
           buttons:
             - name: Projects 
               url: /projects/ 
-            #- name: Aerodynamics 
-            #  url: aerodynamics
             - name: OpenFOAM 
-              url: /openfoam/ 
+              url: /openfoam 
             
 
     socialIcons:

@@ -17,7 +17,7 @@ menu:
           url: /projects/
           weight: 1
         - name: OpenFOAM
-          url: /OpenFOAM/
+          url: /openfoam/
           weight: 2
 
         
@@ -59,7 +59,7 @@ params:
             #- name: Aerodynamics 
             #  url: aerodynamics
             - name: OpenFOAM 
-              url: /OpenFOAM/ 
+              url: /openfoam/ 
             
 
     socialIcons:

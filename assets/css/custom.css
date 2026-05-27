@@ -1,0 +1,51 @@
+ /* =========================================
+     Sticky Sidebar Table of Contents
+     Activates on screens >= 1100px wide
+     (needs room for 720px content + 240px TOC)
+     ========================================= */
+
+  @media (min-width: 1100px) {
+
+    /* Widen the page container to fit sidebar + article side by side */
+    body:has(.post-with-toc) .main {
+      max-width: calc(var(--main-width) + 260px + 2rem + var(--gap) * 2);
+    }
+
+    /* Flex row: TOC on the left, article on the right */
+    .post-with-toc {
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+
+    /* Sticky sidebar that follows scroll */
+    .toc-sidebar {
+      flex: 0 0 240px;
+      width: 240px;
+      position: sticky;
+      top: calc(var(--header-height) + 1.5rem);
+      max-height: calc(100vh - var(--header-height) - 3rem);
+      overflow-y: auto;
+      scrollbar-width: thin;
+    }
+
+    /* Keep article at its normal max width */
+    .post-with-toc .post-single {
+      flex: 1;
+      min-width: 0;
+      max-width: var(--main-width);
+    }
+  }
+
+      min-width: 0;
+      max-width: var(--main-width);
+    }
+  }
+  }
+
+  /* On narrow screens (phones/tablets): TOC stacks above article */
+  @media (max-width: 1099px) {
+    .toc-sidebar {
+      margin-bottom: 1.5rem;
+    }
+  }

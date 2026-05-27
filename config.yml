@@ -60,7 +60,7 @@ params:
             #- name: Aerodynamics # Course
             #  url: aerodynamics/ # Aerodynamics
             - name: OpenFOAM #OpenFOAM
-              url: /OpenFOAM/ #Misc
+              url: /OpenFOAM2/ #Misc
             
 
     socialIcons:

@@ -10,7 +10,7 @@ cover:
     relative: true
 
 showToc: true
-disableAnchoredHeadings: false
+disableAnchoredHeadings: true
 
 ---
 

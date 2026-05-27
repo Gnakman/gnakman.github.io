@@ -1,8 +1,8 @@
 ---
 title: "blockMesh" 
-date: 2025-07-03
+date: 2026-06
 
-author: ["Dieter Vogelsang","Moritz-Maria von Igelfeld"]
+author: ["Nam"]
 description: "Understanding pitzDaily BlockMesh" 
 summary: "Syntax and general blockmehsing guideline for OpenFOAM" 
 cover:

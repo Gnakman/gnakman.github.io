@@ -56,11 +56,11 @@ params:
           imageHeight: 300
           buttons:
             - name: Projects # Books
-              url: projects/ # Books
+              url: /projects/ # Books
             #- name: Aerodynamics # Course
             #  url: aerodynamics/ # Aerodynamics
             - name: OpenFOAM #OpenFOAM
-              url: OpenFOAM/ #Misc
+              url: /OpenFOAM/ #Misc
             
 
     socialIcons:

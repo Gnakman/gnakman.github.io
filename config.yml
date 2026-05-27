@@ -16,7 +16,7 @@ menu:
         - name: Projects
           url: /projects/
           weight: 1
-        - name: OpenFOAM2
+        - name: OpenFOAM
           url: /OpenFOAM/
           weight: 2
 
@@ -38,8 +38,6 @@ params:
     ShowBreadCrumbs: true
     ShowCodeCopyButtons: true
     ShowAllPagesInArchive: false
-    #MainSections: ["projects","aerodynamics","misc"]
-    MainSections: ["projects","OpenFOAM","2"]
     ShowToc: false
     disableScrollToTop: false
     TocOpen: true

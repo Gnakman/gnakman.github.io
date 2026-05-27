@@ -42,13 +42,17 @@
     helper missing in the copy in use ("Ka is not a function") and the WebGL
     backend registered by one copy is invisible to another (blank canvas).
 
-  Why jsDelivr +esm and NOT esm.sh ?bundle:
-    esm.sh's bundler mis-handles vtk.js's circular deps -> the bundle throws
-    "Class extends value #<Object> is not a constructor" during evaluation.
-    jsDelivr's +esm is built with Rollup, which resolves those cycles
-    correctly. It is one ~2 MB file (one registry) that sets window.vtk and
-    pulls each small dep (gl-matrix, d3-scale, xmlbuilder2, fflate, …) as its
-    own single +esm file — a handful of requests, no cascade.
+  Why esm.sh ?bundle&target=es2019 specifically:
+    - Default esm.sh target (es2022) emits native `class X extends Y`, which
+      evaluates Y eagerly; with vtk.js's circular deps that throws
+      "Class extends value #<Object> is not a constructor". target=es2019
+      transpiles inheritance to __extends helpers that tolerate the cycles.
+    - jsDelivr +esm leaves xmlbuilder2 as an external ESM whose CJS->ESM
+      conversion lacks the named `create` export vtk.js imports -> throws
+      "does not provide an export named 'create'". esm.sh INLINES xmlbuilder2
+      as its UMD build, so that interop problem never arises.
+    Net: one ~2.6 MB file (one registry) that sets window.vtk; only small
+    stateless deps (gl-matrix, d3-scale, seedrandom, …) remain as shared URLs.
 
   Backend registration:
     The bundle ships the OpenGL/WebGL classes but does NOT auto-register them
@@ -63,8 +67,8 @@
 <script type="module">
 (async function () {
   try {
-    /* One Rollup-built bundle of all vtk.js sources -> one registry. */
-    await import('https://cdn.jsdelivr.net/npm/@kitware/vtk.js@36.1.0/+esm');
+    /* One transpiled bundle of all vtk.js sources -> one registry. */
+    await import('https://esm.sh/@kitware/vtk.js@36.1.0?bundle&target=es2019');
 
     var vtk = window.vtk;
     if (!vtk || !vtk.Rendering) throw new Error('window.vtk not populated by bundle');

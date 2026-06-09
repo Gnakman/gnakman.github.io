@@ -23,7 +23,8 @@ menu:
         
 
 params:
-    description: "Is this thing on?"
+    description: "Personal website of Nam Kyun Kang, aerodynamicist specializing in ground vehicle aerodynamics and motorsports CFD."
+    keywords: ["Nam Kyun Kang", "aerodynamics", "CFD", "OpenFOAM", "ground vehicle aerodynamics", "motorsports", "aerodynamicist"]
     author: Nam Kyun Kang
     # googleAnalyticsID: "G-XXXXX"
     DateFormat: "January 2006"

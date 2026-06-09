@@ -1,5 +1,5 @@
 ---
-title: "blockMesh:pitzDaly"
+title: "blockMesh:pitzDaily"
 date: 2025-05-26
 description: "A line-by-line guide to blockMeshDict — the structured mesh generator in OpenFOAM."
 summary: "The post is made to summarize how the structured mesh is generated for pitzDaly"
@@ -20,15 +20,17 @@ a plain-text dictionary file called `blockMeshDict`, located at:
 
 `blockMesh` reads this file and writes the resulting mesh into `<case>/constant/polyMesh/`.
 The mesh is made up of **hexahedral blocks** — each block has eight vertices, twelve edges,
-and six faces. You can join multiple blocks together to represent more complex shapes. Generation of the mesh can be done by typing `blockMesh` in the shell.
+and six faces. You can join multiple blocks together to represent more complex shapes. Generation of the mesh can be done by typing `blockMesh` in the shell. There are multiple variants of structured grid as well, O-grid and H-Grid to name a couple. These grids are useful when dealing with circular geometry like pipes and aerofoils. 
 
 ---
 
-## A minimal blockMeshDict
+## pitzDaily `blockMeshDict` 
 
-Below is a complete `blockMeshDict` for a simple rectangular domain
-(a box of 1 m × 0.1 m × 0.1 m with 20 cells in x, 1 in y, 1 in z).
-Every section is explained line by line.
+pitzDaily `blockMeshDict` from OpenFOAM tutorial is shown below.
+Image below is from [OpenFOAM document](https://doc.cfd.direct/openfoam/user-guide-v13/backwardstep) 
+![](geometry.png)
+
+
 
 ```cpp
 /*--------------------------------*- C++ -*----------------------------------*\
@@ -186,18 +188,6 @@ boundary
 
 ## Line-by-line explanation
 
-### File header
-
-```cpp
-/*--------------------------------*- C++ -*----------------------------------*\
-...
-\*---------------------------------------------------------------------------*/
-```
-
-This is a block comment (`/* ... */`). OpenFOAM files always start with this
-banner — it is cosmetic and is ignored by the parser. The `-*- C++ -*-` tag
-tells editors like Emacs to apply C++ highlighting.
-
 ---
 
 ### FoamFile
@@ -205,7 +195,6 @@ tells editors like Emacs to apply C++ highlighting.
 ```cpp
 FoamFile
 {
-    version     2.0;
     format      ascii;
     class       dictionary;
     object      blockMeshDict;
@@ -217,21 +206,20 @@ OpenFOAM reads this to identify the file before parsing the rest.
 
 | Key | Meaning |
 |---|---|
-| `version` | File-format version. Always `2.0`. |
 | `format` | `ascii` (human-readable) or `binary` (faster for large meshes). |
 | `class` | The C++ class that will parse this file. `dictionary` is used for all text config files. |
-| `object` | The name of the file — must match the actual filename (`blockMeshDict`). |
+| `object` | The name of the file — must match the actual filename (`blockMeshDict`). S|
 
 ---
 
 ### scale
 
 ```cpp
-scale   1;
+scale   0.001;
 ```
 
 A global scaling factor applied to **every** vertex coordinate.
-Use `scale 0.001` if your coordinates are in millimetres and you want metres,
+Use `scale 1` if your coordinates are in meters and you want metres,
 or `scale 25.4` to convert inches to millimetres (combined with a unit system).
 
 ---

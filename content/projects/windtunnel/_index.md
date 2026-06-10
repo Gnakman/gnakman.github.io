@@ -4,8 +4,7 @@ description: "Wind tunnel projects and experiments"
 author: ["Nam Kyun Kang"]
 summary: "Open Loop wind tunnel Project, image:som.com"
 cover:
-    image:
-    "Wind-Tunnel-Section.png"
+    image: "Wind-Tunnel-Section.png"
     alt: "tunnel pic"
     relative: true
 ---

@@ -1,18 +1,20 @@
 {{- /*
   VTK surface viewer shortcode
   Parameters:
-    file    (required) path to the .vtp file, e.g. /vtk/cavity_surface.vtp
-    colorBy (optional) point/cell array name to colour by, e.g. "p" or "U"
-    height  (optional) CSS height of the viewer, default "500px"
-    title   (optional) caption shown above the viewer
+    file      (required) path to the .vtp file, e.g. /vtk/cavity_surface.vtp
+    colorBy   (optional) point/cell array name to colour by, e.g. "p" or "U"
+    wireframe (optional) "true" to render as wireframe instead of solid surface
+    height    (optional) CSS height of the viewer, default "500px"
+    title     (optional) caption shown above the viewer
   File goes in: static/vtk/yourfile.vtp
 */ -}}
 
-{{- $file    := .Get "file" -}}
-{{- $colorBy := .Get "colorBy" | default "" -}}
-{{- $height  := .Get "height"  | default "500px" -}}
-{{- $title   := .Get "title"   | default "" -}}
-{{- $id      := .Ordinal -}}
+{{- $file      := .Get "file" -}}
+{{- $colorBy   := .Get "colorBy"   | default "" -}}
+{{- $height    := .Get "height"    | default "500px" -}}
+{{- $title     := .Get "title"     | default "" -}}
+{{- $wireframe := .Get "wireframe" | default "false" -}}
+{{- $id        := .Ordinal -}}
 
 <div class="vtk-wrapper">
   {{- with $title }}<p class="vtk-label">{{ . }}</p>{{ end -}}
@@ -114,11 +116,12 @@
 
 <script>
 (function () {
-  var FILE     = {{ $file    | jsonify | safeJS }};
-  var COLOR_BY = {{ $colorBy | jsonify | safeJS }};
-  var MOUNT    = 'vtk-mount-{{ $id }}';
-  var OVERLAY  = 'vtk-overlay-{{ $id }}';
-  var STATUS   = 'vtk-status-{{ $id }}';
+  var FILE      = {{ $file      | jsonify | safeJS }};
+  var COLOR_BY  = {{ $colorBy   | jsonify | safeJS }};
+  var WIREFRAME = {{ $wireframe | jsonify | safeJS }};
+  var MOUNT     = 'vtk-mount-{{ $id }}';
+  var OVERLAY   = 'vtk-overlay-{{ $id }}';
+  var STATUS    = 'vtk-status-{{ $id }}';
 
   function setStatus(msg) {
     var el = document.getElementById(STATUS);
@@ -138,7 +141,6 @@
   /* Poll for window.__vtkReady with informative status messages. */
   var ticks = 0;
   function initViewer() {
-    /* If the module script caught an error, surface it. */
     if (window.__vtkError) { showError(window.__vtkError); return; }
 
     if (!window.__vtkReady) {
@@ -146,7 +148,6 @@
       if (ticks === 1)   setStatus('Loading VTK.js…');
       if (ticks === 50)  setStatus('Loading VTK.js… (first visit takes ~30 s)');
       if (ticks === 150) setStatus('Still loading… open DevTools › Console for errors');
-      /* Timeout at ~60 s (300 \xd7 200 ms) */
       if (ticks > 300)   { showError('VTK.js load timed out — open browser console for details'); return; }
       setTimeout(initViewer, 200);
       return;
@@ -217,9 +218,9 @@
             if (arr) {
               var range = arr.getRange();
               var lut   = vtk.vtkColorTransferFunction.newInstance();
-              lut.addRGBPoint(range[0],                    0.231, 0.298, 0.752);  /* blue  */
-              lut.addRGBPoint((range[0] + range[1]) / 2,   0.865, 0.865, 0.865);  /* white */
-              lut.addRGBPoint(range[1],                    0.706, 0.016, 0.149);  /* red   */
+              lut.addRGBPoint(range[0],                    0.231, 0.298, 0.752);
+              lut.addRGBPoint((range[0] + range[1]) / 2,   0.865, 0.865, 0.865);
+              lut.addRGBPoint(range[1],                    0.706, 0.016, 0.149);
               mapper.setLookupTable(lut);
               mapper.setScalarRange(range[0], range[1]);
               mapper.setColorByArrayName(COLOR_BY);
@@ -233,6 +234,9 @@
 
           var actor = vtk.vtkActor.newInstance();
           actor.setMapper(mapper);
+          if (WIREFRAME === 'true') {
+            actor.getProperty().setRepresentation(1);
+          }
           renderer.addActor(actor);
           renderer.resetCamera();
           renderWindow.render();

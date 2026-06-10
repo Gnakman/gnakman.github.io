@@ -9,7 +9,7 @@ wight : 2
 ---
 
 # Overview
-The design trade off studies have been completed using OpenFOAM. Pressure drop along the nozzle, boundary layer thickness, and flow uniformity were used to evaluate each designs. Most important consideration is space, the overall length of the tunnel has to be bewteen 2-3 m. Since the test section will be 0.6 m long that means there are 1.4 - 2.4 m of space for both nozzle and diffuser combined. 
+The design trade off studies have been completed using OpenFOAM. Pressure drop along the nozzle, boundary layer thickness, and flow uniformity were used to evaluate each designs. Most important consideration is space, the overall length of the tunnel has to be between 2-3 m. Since the test section will be 0.6 m long that means there are 1.4 - 2.4 m of space for both nozzle and diffuser combined. 
 The following shows the parameters that has to be determined:
 + Contraction ratio, 6-9
 + Curvature
@@ -28,6 +28,21 @@ Experimental setup:
 The Reynolds number is about 4 times greater, but the flow should behave relatively the same. 
 
 ### Numerical Setup
+I am using OpenFOAM foundation V12 for this project. Most of the design will be done in 2D due to the nature of the flow and a structured hexahedral mesh is made using the native OpenFOAM mesher blockMesh. I am fully resolving the boundary layer which means y+ $\leq$ 1. One thing to note is that mesh setting for 2D case is not necessarily adequate for the 3D case especially when it comes to spacing to acquire the required y+ value. 
+
+```cpp
+edges(
+    spline 0 1
+    (
+     )
+)
+```
+
+
+<!--
+{{<vtk file="/vtk/duct.vtp" wireframe="true" colorBy="U" title="Mesh" >}}*/
+-->
+![](Mesh.png)
 
 
 

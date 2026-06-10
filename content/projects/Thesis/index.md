@@ -1,5 +1,6 @@
 ---
 title: "Effect of Approach Flow Condition on the Wake of an Ahmed Body" 
+draft: true
 date: 2021-03-21
 author: ["Nam Kyun Kang"]
 description: "Virtual design of a Rally car"

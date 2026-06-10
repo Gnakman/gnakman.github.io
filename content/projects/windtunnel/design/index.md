@@ -32,6 +32,20 @@ The size of the tunnel as well will be determined by choosing the geometry of th
 
 I am sure more will come up as the project moves forward, but for now this is what I have to go off with. 
 
+## Constraints:
+### Test Section
+The immediate contraint is space, if I had a ton of realstate. I want the tunnel to fit in a garage so it should not exceed the length of 3 m. The test section will be 30 cm by 30 cm which means a 1:12 scale model can be tested inside. The blockage ratio will be about 17% which is acceptable for me. The test section length should be about 0.5 - 3 times the hydraulic diameter of the test section according to Barlow due to the wake. I will just create the length to be 2 times the diameter, which comes out to 60 cm. 
+### Nozzle
+The contraction ratio should be between 6-10 and the length of the nozzle has to be approximately the same as the hydraulic diamter of the nozzle inlet according to Metha. I will conduct some CFD study to figure out the most realistic size for me. Flow uniformity and pressure drop will be monitored. There is also a fifth order polynomial that I can use to determine the shape of the nozzle. 
+### Diffuser
+Diffuser is there to recover some pressure to reduce resistance. The goal is to keep the flow attached, some simualtion I did in the past showed that anything above 6 degrees was quite bad. I will do some more simulation to figure it out. Nozzle length has to be sorted out first for me to be able to design the diffuser. 
+###
+
+
+
+
+
+
 
 
 

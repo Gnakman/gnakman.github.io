@@ -28,7 +28,7 @@ params:
     author: Nam Kyun Kang
     # googleAnalyticsID: "G-XXXXX"
     DateFormat: "January 2006"
-    defaultTheme: dark
+    defaultTheme: light
     hideFooter: True
     disableThemeToggle: False
     ShowShareButtons: false

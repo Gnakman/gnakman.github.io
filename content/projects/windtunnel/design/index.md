@@ -38,14 +38,39 @@ I am sure more will come up as the project moves forward, but for now this is wh
 |---|---|---|---|
 |1| Honey Comb |Reduce turbulence and increases flow uniformity|TBD|
 |2| Nozzle |Accelerates flow and conditions flow|6-10 contraction|
-|3| Test Section |Test object and instrumentation|30x30x60 cm|
+|3| Test Section |Test object and instrumentation|25x25x56 cm|
 |4| Diffuser|Enables pressure recovery|TBD|
 |5| Fan|Draws flow into the tunnel|~2000 cfm or 10 m/s|
-## Constraints:
+## General Rule of Thumb
+A design guide for a wind tunnel can be found in chapter 3 of this [book]("https://web.pdx.edu/~d4eb/chrome/J._B._Barlow,_W._H._Rae,_Jr,_A._Pope_Low_Speed_Wind_Tunnel_Testing.pdf") by J.Barlow, W.Rae, Jr, and A.Pope
 ### Test Section
-The immediate constraint is space, if I had a ton of real estate. I want the tunnel to fit in a garage so it should not exceed the length of 3 m. The test section will be 30 cm by 30 cm which means a 1:12 scale model can be tested inside. The blockage ratio will be about 17% which is acceptable for me. The test section length should be about 0.5 - 3 times the hydraulic diameter of the test section according to Barlow due to the wake. I will just create the length to be 2 times the diameter, which comes out to 60 cm. 
+* Length of the section has to be at least 2 times the hydraulic diameter,  
+$D_{h} = 2(A_{cross}/\pi)^{0.5}$. 
+*  $w\times h\times  l = 0.25\times 0.25\times 0.56 m$
+
+Other parameter based its geometry on the test section and preliminary sizing study showed 0.25 m is a good length if I want to limit the total length of the tunnel to be less than 3 m.
 ### Nozzle
-The contraction ratio should be between 6-10 and the length of the nozzle has to be approximately the same as the hydraulic diamter of the nozzle inlet according to Mehta. I will conduct some CFD study to figure out the most realistic size for me. Flow uniformity and pressure drop will be monitored. There is also a fifth order polynomial that I can use to determine the shape of the nozzle. 
+* Contraction ratio, $CR_{Nozzle}$ must be between 6-9
+* Length of the nozzle is $\approx D_{h}$ of the nozzle
+<div style="width: fit-content; margin: auto; text-align: center">
+
+| $CR_{Nozzle}$| $W$ & $H$ (m)|$L$ (m)|
+|---|---|---|
+|6| 0.612 |0.691|
+|6.5| 0.637 |0.719|
+|7| 0.661  |0.746|
+|7.5| 0.685|0.772|
+|8| 0.707|0.798|
+|8.5| 0.729 |0.822|
+|9| 0.750  |0.846|
+
+</div>
+The curvature of the nozzle can be derived from a Bell-Metha 5th order polynomial equation:  
+$$
+y = a_{1}\xi^{5}+a_{2}\xi^{4}+a_{3}\xi^{3}+a_{4}\xi^{2}+a_{5}\xi^{5}+C
+$$
+where $\xi=x/L_{nozzle}$
+
 ### Diffuser
 Diffuser is there to recover some pressure to reduce resistance. The goal is to keep the flow attached, some simulation I did in the past showed that anything above 6 degrees was quite bad. I will do some more simulation to figure it out. Nozzle length has to be sorted out first for me to be able to design the diffuser. 
 ### Maximum Speed

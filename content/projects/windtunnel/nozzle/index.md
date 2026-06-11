@@ -28,21 +28,35 @@ Experimental setup:
 The Reynolds number is about 4 times greater, but the flow should behave relatively the same. 
 
 ### Numerical Setup
-I am using OpenFOAM foundation V12 for this project. Most of the design will be done in 2D due to the nature of the flow and a structured hexahedral mesh is made using the native OpenFOAM mesher blockMesh. I am fully resolving the boundary layer which means y+ $\leq$ 1. One thing to note is that mesh setting for 2D case is not necessarily adequate for the 3D case especially when it comes to spacing to acquire the required y+ value. 
+I am using OpenFOAM foundation V12 for this project. Most of the design will be done in 2D due to the nature of the flow and a structured hexahedral mesh is made using the native OpenFOAM mesher blockMesh. I am fully resolving the boundary layer which means y+ $\leq$ 1. One thing to note is that mesh setting for 2D case is not necessarily adequate for the 3D case especially when it comes to spacing to acquire the required y+ value. Using spline you can create a curve as long as you know the coordinates between the vertices and these coordinates can be calculated using Python or Octave.
 
 ```cpp
 edges(
     spline 0 1
     (
+        (x1 y1 z1)
+        (x2 y2 z2)
+        (x3 y3 z3)
      )
 )
 ```
+Using spline you can create a curve as long as you know the coordinates between the vertices and these coordinates can be calculated using Python or Octave.
 
-
+```cpp
+blocks(
+    hex (0 1 2 3 4 5 6 7) // 
+    (200 300 1) //dx, dy, dz -> 200 elements across x & 300 across y
+    simpleGrading( 1 // uniform distribution along x
+                    ((5 3 500) (5 3 0.002)) 
+    // spacing of 1/500 applied at top and bottom
+                    1 ) // uniform distribution along z
+)
+```
 <!--
 {{<vtk file="/vtk/duct.vtp" wireframe="true" colorBy="U" title="Mesh" >}}*/
 -->
 ![](Mesh.png)
+The number of elements in the mesh shown above is 60,000. 
 
 
 

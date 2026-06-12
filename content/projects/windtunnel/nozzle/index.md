@@ -28,7 +28,8 @@ Experimental setup:
 The Reynolds number is about 4 times greater, but the flow should behave relatively the same. 
 
 ### Numerical Setup
-I am using OpenFOAM foundation V12 for this project. Most of the design will be done in 2D due to the nature of the flow and a structured hexahedral mesh is made using the native OpenFOAM mesher blockMesh. I am fully resolving the boundary layer which means y+ $\leq$ 1. One thing to note is that mesh setting for 2D case is not necessarily adequate for the 3D case especially when it comes to spacing to acquire the required y+ value. Using spline you can create a curve as long as you know the coordinates between the vertices and these coordinates can be calculated using Python or Octave.
+Structured hexahedral mesh is used for this nozzle simulation. OpenFOAM has its own structured mesh generator called blockMesh and it is quite useful when dealing with simple geometries. You can also add curvature via spline command as displayed below. The spline is connecting the vertices 0 and 1 together with prescribed coordinates.  
+
 
 ```cpp
 edges(
@@ -40,24 +41,27 @@ edges(
      )
 )
 ```
-Using spline you can create a curve as long as you know the coordinates between the vertices and these coordinates can be calculated using Python or Octave.
+There is only one block for the nozzle and you can make your block using hex. It helps when you draw out the geometry beforehand with all the vertices labeled. This will help you follow the right-hand rule and I connect the vertices looking down from the z-plane. So the mesh has 200 elements along x direction and 300 in y. I just divided the mesh in two different zones and added half of the elements in each zones. The spacing is 1/500. I think the distance between the cells are determined using the geometric series. 
 
 ```cpp
 blocks(
     hex (0 1 2 3 4 5 6 7) // 
-    (200 300 1) //dx, dy, dz -> 200 elements across x & 300 across y
-    simpleGrading( 1 // uniform distribution along x
-                    ((5 3 500) (5 3 0.002)) 
-    // spacing of 1/500 applied at top and bottom
-                    1 ) // uniform distribution along z
+    (200 300 1)
+    simpleGrading( 1 
+                    ((5 3 500) (5 3 0.002))   
+                    1 )
 )
 ```
 <!--
 {{<vtk file="/vtk/duct.vtp" wireframe="true" colorBy="U" title="Mesh" >}}*/
 -->
 ![](Mesh.png)
-The number of elements in the mesh shown above is 60,000. 
+The number of elements in the mesh shown above is 60,000 and it is just here to illustrate the type of mesh that can be generated using blockMesh. I've used ICEMCFD before to make structured mesh and it is quite similar apart from the lack of graphical interface.
 
+I originally wanted to use 2D simulation to save time, but it turns out that is not the right choice. I guess the curvature of the nozzle creates a strong secondary flow inside and creates a flow field that cannot be quite explained using only two coordinates. 
+![](comparison.png)
+
+I will conclude that the current setup is adequate for the nozzle design and the same setup will be used later for the diffuser as well. 
 
 
 

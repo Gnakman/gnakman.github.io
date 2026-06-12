@@ -6,6 +6,7 @@ summary: "The post is made to summarize how the structured mesh is generated for
 showToc: true
 TocOpen: true
 disableAnchoredHeadings: false
+draft: true
 ---
 
 ## What is blockMesh?

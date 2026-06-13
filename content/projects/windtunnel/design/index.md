@@ -67,7 +67,7 @@ Other parameter based its geometry on the test section and preliminary sizing st
 </div>
 The curvature of the nozzle can be derived from a Bell-Metha 5th order polynomial equation:  
 $$
-y = a_{1}\xi^{5}+a_{2}\xi^{4}+a_{3}\xi^{3}+a_{4}\xi^{2}+a_{5}\xi^{5}+C
+y = a_{1}\xi^{5}+a_{2}\xi^{4}+a_{3}\xi^{3}+a_{4}\xi^{2}+a_{5}\xi+C
 $$
 where $\xi=x/L_{nozzle}$
 

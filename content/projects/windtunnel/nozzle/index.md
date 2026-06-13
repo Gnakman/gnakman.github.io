@@ -14,7 +14,7 @@ The following shows the parameters that has to be determined:
 + Contraction ratio, 6-9
 + Curvature
 + Length; length will be about the size of the inlet of the nozzle
-## Preliminary CFD Studies
+## Preliminary CFD Study
 Before the design studies are conducted, I have to determine the numerical model as well as the mesh suitable for the simulation. Because the geometry is rather simple, I will be using blockMesh and validate my simulation setup using an experimental data. This [paper](https://www.sciencedirect.com/science/article/abs/pii/S0167610500000805) by Fang et.al titled "Experimental and analytical evaluation of flow in a square-to-square wind tunnel contraction" provides exactly what I need to make sure my setup is physical. 
 ![](Fan_Nozzle.png)
 Experimental setup: 
@@ -63,6 +63,18 @@ I originally wanted to use 2D simulation to save time, but it turns out that is 
 
 I will conclude that the current setup is adequate for the nozzle design and the same setup will be used later for the diffuser as well. 
 
+## Nozzle Design
+Seven simulations have been ran and the parameter of the simulation is summarized below.
+| $CR_{Nozzle}$| $W$ & $H$ (m)|$L$ (m)|
+|---|---|---|
+|6| 0.612 |0.691|
+|6.5| 0.637 |0.719|
+|7| 0.661  |0.746|
+|7.5| 0.685|0.772|
+|8| 0.707|0.798|
+|8.5| 0.729 |0.822|
+|9| 0.750  |0.846|
 
+Velocity uniformity, boundary layer thickness and pressure drop are used to evaluate the nozzle design. 
 
 

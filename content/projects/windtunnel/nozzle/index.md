@@ -7,6 +7,10 @@ summary: "Nozzle wind tunnel experiment"
 showToc: true
 wight : 2
 defaultTheme: light
+cover:
+    image: "Pressure.png"
+    alt: "Surface Pressure"
+    relative: true
 ---
 
 # Overview
@@ -111,3 +115,4 @@ Boundary layer thickness is highly dependent on the length of the nozzle, which 
 Because I want to minimize the overall length of the tunnel, I will choose CR = 7. The angularity of the flow is quite low only 1.6% which is acceptable for me and the boundary layer thickness can be mitigated by installing a testing platform to ensure the object inside only sees a uniform flow. I just have to make sure to install it about 10 mm above the test section. I am not too worry about the power consumption so the difference between CR6 and CR7 is quite negligible. 
 
 The nozzle geometry will be 0.661 x 0.661 x 0.746 m. 
+![](Nozzle_Design.png)

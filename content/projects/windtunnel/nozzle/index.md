@@ -5,7 +5,7 @@ author: ["Nam Kyun Kang"]
 description: "Nozzle wind tunnel experiment"
 summary: "Nozzle wind tunnel experiment"
 showToc: true
-wight : 2
+weight: 2
 defaultTheme: light
 cover:
     image: "Pressure.png"

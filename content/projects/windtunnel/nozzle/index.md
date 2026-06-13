@@ -6,6 +6,7 @@ description: "Nozzle wind tunnel experiment"
 summary: "Nozzle wind tunnel experiment"
 showToc: true
 wight : 2
+defaultTheme: light
 ---
 
 # Overview
@@ -56,7 +57,7 @@ blocks(
 {{<vtk file="/vtk/duct.vtp" wireframe="true" colorBy="U" title="Mesh" >}}*/
 -->
 ![](Mesh.png)
-The number of elements in the mesh shown above is 60,000 and it is just here to illustrate the type of mesh that can be generated using blockMesh. I've used ICEMCFD before to make structured mesh and it is quite similar apart from the lack of graphical interface.
+The number of elements in the mesh shown above is 60,000 and it is just here to illustrate the type of mesh that can be generated using blockMesh. I've used ICEM CFD before to make structured mesh and it is quite similar apart from the lack of graphical interface.
 
 I originally wanted to use 2D simulation to save time, but it turns out that is not the right choice. I guess the curvature of the nozzle creates a strong secondary flow inside and creates a flow field that cannot be quite explained using only two coordinates. 
 ![](comparison.png)
@@ -65,6 +66,9 @@ I will conclude that the current setup is adequate for the nozzle design and the
 
 ## Nozzle Design
 Seven simulations have been ran and the parameter of the simulation is summarized below.
+
+<div style="width: fit-content; margin: auto; text-align: center">
+
 | $CR_{Nozzle}$| $W$ & $H$ (m)|$L$ (m)|
 |---|---|---|
 |6| 0.612 |0.691|
@@ -75,6 +79,35 @@ Seven simulations have been ran and the parameter of the simulation is summarize
 |8.5| 0.729 |0.822|
 |9| 0.750  |0.846|
 
+</div>
+
 Velocity uniformity, boundary layer thickness and pressure drop are used to evaluate the nozzle design. 
+<div style="width: fit-content; margin: auto; text-align: center">
+
+| $CR_{Nozzle}$| $\delta P$|BL Thickness (mm)|Flow uniformity|
+|---|---|---|---|
+|6| 60.70 |8.22|0.0165|
+|6.5| 61.02 |8.99|0.0160|
+|7| 61.27  |9.07|0.0156|
+|7.5| 61.79|9.23|0.0151|
+|8| 61.82|9.31|0.0147|
+|8.5| 62.06 |9.37|0.0143|
+|9| 62.15  |9.52|0.0139|
+
+</div>
 
 
+### Flow uniformity 
+![](outlet_flow_uniformity.png)
+
+Flow uniformity increases as the contraction ratio goes up. Greater the acceleration, more dominant x-component becomes. The fluid parcel is being stretched more as it experiences higher acceleration which leads to lower vorticiy in general. 
+
+### Boundary Layer Thickness
+![](outlet_boundary_layer_thickness.png)
+
+Boundary layer thickness is highly dependent on the length of the nozzle, which explains the higher boundary layer thickness for high CR cases. 
+
+## Conclusion
+Because I want to minimize the overall length of the tunnel, I will choose CR = 7. The angularity of the flow is quite low only 1.6% which is acceptable for me and the boundary layer thickness can be mitigated by installing a testing platform to ensure the object inside only sees a uniform flow. I just have to make sure to install it about 10 mm above the test section. I am not too worry about the power consumption so the difference between CR6 and CR7 is quite negligible. 
+
+The nozzle geometry will be 0.661 x 0.661 x 0.746 m. 

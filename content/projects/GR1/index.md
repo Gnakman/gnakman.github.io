@@ -6,7 +6,7 @@ description: "Genesis Magma"
 summary: "My involvement with Genesis Magma Hypercar"
 cover:
     image: "5216-GENESISMAGMARACINGDEBUTSFULL-SCALEGMR-001HYPERCARUSHERINGINANEWERAOFATHLETICELEGANCE.jpg"
-    alt: "Portugese Irregular Verbs"
+    alt: "Performance Aero"
     relative: true
 
 showToc: true

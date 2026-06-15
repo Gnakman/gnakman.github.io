@@ -16,7 +16,7 @@ My happy place as an aerodynamicist is the wind tunnel. So far I have been to:
 + WindShear in North Carolina, USA
 + ARC Scale Wind Tunnel in Indy 
 
-I have been meaning to build one for myself to test small objects and calibrate different measurement device I might create in the future for a very long time. I would like to be measure pressure, force and do some flow visualization inside of the tunnel. 
+I have been meaning to build one for myself to test small objects and calibrate different measurement device I might create in the future for a very long time. I would like to measure pressure, force and do some flow visualization inside of the tunnel. 
 
 There are three different things that you must consider:
 + Design

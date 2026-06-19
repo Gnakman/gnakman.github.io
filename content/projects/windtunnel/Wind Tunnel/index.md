@@ -23,7 +23,7 @@ I am only aware of the corrections they do for automotive tunnels which are ofte
 
 ### Pressure Distribution
 ![](Cp_streamwise.png)
-The figure above shows how pressure changes along the wind tunnel. It is what you expect, pressure decreases quadratically as the velocity increases inside of the nozzle. Pressure also decreases inside of the tunnel due to either friction and in some way you can think that test section is contracting as well since boundary layer thickness grows downstream. Diffuser helps with pressure recovery as you can see, but outlet pressure will always be same as atmospheric pressure. Diffuser just speeds things a bit more.
+The figure above shows how pressure changes along the wind tunnel. It is what you expect, pressure decreases quadratically as the velocity increases inside of the nozzle. Pressure also decreases inside of the tunnel due to either friction and in some way you can think that test section is contracting as well since boundary layer thickness grows downstream. Diffuser helps with pressure recovery as you can see, but outlet pressure will always be same as atmospheric pressure. The pressure difference between the inlet and the outlet has great importance during fan selection. Change in pressure causes the fluid to move and this pressure drop is something the fan will have to overcome initially to get the air moving. 
 
 ![](Cp_test_section.png)
 This is the interesting plot. Imagine there is an object located between x = 0.9 m and x = 1.0 m. Because the pressure is not constant, there will be additional forces acting on the test object due to axial pressure distribution inside of the tunnel. In this case there will be some thrust and pitching moment will also be affected. There is a correction for that.
@@ -41,7 +41,7 @@ $$
 ![](Ux_profiles.png)
 The figure above shows velocity profiles inside of the test section at various locations. If I am testing a sphere or anything suspended in air it should not be affected, but any test involving ground effect will have to have boundary layer thickness in mind. I've seen half models of airplanes being tested before and they just place the model on the ground. I think I will mount a ground plane 10 mm above the tunnel so minimize boundary layer affecting my test results. 
 
-This is the easy part honestly. I am an aerodynamics engineer, I know fluid dynamics and various tools to do fluid dynamics. I don't even know how to get electronics and manufacturing started. 
+Now that the overall specification of the tunnel is complete, I will have to spend a great deal on figuring out how to actually build this thing. 
 
 
 

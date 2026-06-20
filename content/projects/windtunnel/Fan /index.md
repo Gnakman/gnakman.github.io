@@ -1,6 +1,6 @@
 ---
 title: "Fan"
-date: 2026-05-09
+date: 2026-06-20
 author: ["Nam Kyun Kang"]
 description: "Fan Selection"
 summary: "Calculating overall pressure drop inside of the tunnel for fan selection"
@@ -20,23 +20,7 @@ Each fan can be characterized using a fan performance curve which tells you how 
 
 There are many kinks that must be worked out. As an aerodynamics engineer I am quite comfortable with creating the overall design of the tunnel by using CFD, but the actual fabrication of the tunnel is a daunting task. I've also used pressure scanners many times before, but I've never created one from scratch and I will have to create one from scratch considering how expensive it is to buy off the shelf. I am lucky enough to have been to a wind tunnel to know what is required for the application I have in mind. 
 
-The size of the tunnel as well will be determined by choosing the geometry of the test articles. The project should be done in this order:
 
-1. Determine maximum width, height and length of the test article
-2. Test section geometry based on #1
-3. Maximum speed of the tunnel
-4. Contraction ratio of the nozzle
-5. diffuser geometry according to available axial fan
-6. What will be measured?
-    + air speed
-    + surface pressure
-    + force
-7. DAQ schematic and hardware
-8. Fan controller 
-9. How will the tunnel be constructed?
-10. How to tackle noise and vibration of the fan?
-
-I am sure more will come up as the project moves forward, but for now this is what I have to go off of. 
 
 ![](schematic.png)
 

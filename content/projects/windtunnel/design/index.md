@@ -42,7 +42,7 @@ I am sure more will come up as the project moves forward, but for now this is wh
 |4| Diffuser|Enables pressure recovery|2-3 Expansion|
 |5| Fan|Draws flow into the tunnel|~2000 cfm or 10 m/s|
 ## General Rule of Thumb
-A design guide for a wind tunnel can be found in chapter 3 of this [book]("https://books.google.ca/books/about/Low_Speed_Wind_Tunnel_Testing.html?id=nUHWDwAAQBAJ&redir_esc=y") by J.Barlow, W.Rae, Jr, and A.Pope
+A design guide for a wind tunnel can be found in chapter 3 of this [book](https://www.goodreads.com/book/show/156168.Low_Speed_Wind_Tunnel_Testing) by J.Barlow, W.Rae, Jr, and A.Pope
 ### Test Section
 * Length of the section has to be at least 2 times the hydraulic diameter,  
 $D_{h} = 2(A_{cross}/\pi)^{0.5}$. 

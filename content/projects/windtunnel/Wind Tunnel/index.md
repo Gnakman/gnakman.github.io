@@ -12,6 +12,22 @@ cover:
     alt: "Surface Pressure"
     relative: true
 ---
+## Wind Tunnel Dimension
+### Nozzle
+* Contraction Ratio: 7
+* W x H x L = 661 mm x 661 mm x 746 mm
+
+### Test Section:
+* W x H x L = 250 mm x 250 mm x 560 mm
+
+### Diffuser:
+* Expansion Ratio: 2
+* Angle : 3.5 deg 
+* W x H x L = 353.85 mm x 353.85 mm x 849 mm
+
+Total length of the tunnel is 2.155 m long.
+
+
 
 ## Wind tunnel Physics
 

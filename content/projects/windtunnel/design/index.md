@@ -75,6 +75,8 @@ where $\xi=x/L_{nozzle}$
 Diffuser is there to recover some pressure to reduce resistance. The goal is to keep the flow attached, some simulation I did in the past showed that anything above 6 degrees was quite bad. I will do some more simulation to figure it out. Nozzle length has to be sorted out first for me to be able to design the diffuser. 
 ### Maximum Speed
 A radiator fan will be used to draw the air into the nozzle from the diffuser. The range will be between 10-20 m/s, which means that the fan should move 0.9 - 1.8 cubic meter of air per second or around 2000-4000 cfm. Realistically, the maximum speed of the tunnel will be 10 m/s unless I can design an add-on that contracts the flow even more. The Reynolds number based on the hydraulic diameter of the test section is $1.9\times(10^{5})$. 
+### Conclusion
+The most realistic constraint for this project is the size. As an aerodynamics engineer, I would want a full scale tunnel that is capable of reaching a speed up to 300 km/hr. Maybe one day, but for now I am committed to create a tunnel that is big enough to do meaningful work and help me scratch an itch that has been around for years. 
 
 
 

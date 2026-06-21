@@ -1,16 +1,16 @@
 ---
-title: "Fan and static pressure"
+title: "Screen and Honeycomb"
 date: 2026-06-20
 author: ["Nam Kyun Kang"]
-description: "Fan Selection"
-summary: "Calculating overall pressure drop inside of the tunnel for fan selection, image:https://en.wikipedia.org/wiki/Centrifugal_fan"
+description: "What they do at what cost"
+summary: "Effect of screen and honeycomb on the flow"
 cover:
-    image: "Centrifugal_fan.gif"
+    image: ""
     alt: "tunnel pic"
     relative: true
 showToc: false
 math: true
-weight: 6
+weight: 5
 ---
 
 ## Fans 

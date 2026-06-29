@@ -1,8 +1,8 @@
 ---
-title: "General Overview"
+title: "Constraints and Objective"
 date: 2026-05-09
 author: ["Nam Kyun Kang"]
-description: "General Overview"
+description: "Design and CFD"
 summary: "Specs and design constraints for building an open loop wind tunnel"
 showToc: false
 math: true

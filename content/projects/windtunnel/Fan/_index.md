@@ -10,7 +10,7 @@ cover:
     relative: true
 showToc: false
 math: true
-weight: 6
+weight: 2
 ---
 
 ## Fans 
